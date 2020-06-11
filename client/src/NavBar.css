@@ -1,0 +1,22 @@
+
+#navigation-bar{
+    display: flex;
+    justify-content: center;
+ }
+ 
+ .navbar-link{
+     width: 100%;
+     padding-top: 3%;
+     padding-bottom: 3%;
+     padding-right: 1%;
+     padding-left: 1%;
+     font-size: 100%;
+    background-color: skyblue;
+     color: black;
+     text-decoration: none;
+     text-align: center;
+ }
+ 
+ .navbar-link-active{
+     background-color: lightgray;
+ }

@@ -1,0 +1,183 @@
+
+.heading{
+text-align: center;
+margin-top: 5%;
+
+}
+
+#navigation-bar{
+  width: 100%;
+}
+
+#container-for-featured-listings{
+  text-align: center; 
+}
+
+.featured-listing{
+  width: 40%;
+  height: 20%;
+  text-align: center;
+}
+
+.login-and-signup-messages{
+
+}
+
+.toggle-login{
+color: skyblue;
+}
+
+.toggle-login:hover{
+  color: darkgrey;
+}
+
+.login-and-signup-form-fields{
+  width: 30%;
+  height: 5%;
+  margin: 1.5%;
+}
+
+.containers-for-login-page{
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.submit-buttons{
+  width: 20%;
+  height: 5%;
+  margin-top: 2%;
+}
+
+.tabs{
+  margin: 2%;
+  padding: 2%; 
+  width: 100%;
+  color: black;
+  text-decoration: none;
+}
+
+.homepage-container{
+  font-size: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  text-align: center;
+}
+
+.forms{
+  text-align: center;
+}
+
+.heading-for-forms{
+  text-align: center;
+}
+
+.container-for-general-donation-listings{
+display: flex;
+justify-content: flex-start;
+}
+
+.general-listing{
+  text-align: left;
+  width: 20%;
+  height: 20%;
+  margin: 2%;
+}
+
+.background-for-general-listings{
+  background-color: lightgray;
+}
+
+.listing-showpage-image{
+  width: 60%;
+  text-align: center;
+}
+
+.button{
+  width: 30%;
+  height: 10%;
+  text-align: center;
+  margin: 2%;
+}
+
+.div-for-showpage{
+  display: flex;
+  flex-direction: column;
+  margin-right: 15%;
+  margin-left: 15%;
+  margin-bottom: 5%;
+}
+
+.div-for-showpage-info{
+  display: flex;
+  justify-content: center;
+}
+
+.showpage-item-name{
+  width: 50%
+}
+
+.showpage-item-quantity{
+ width: 50%;
+}
+
+.showpage-item-description{
+  color: darkgray;
+  margin-bottom: 5%;
+}
+
+.listing-showplace-location-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.listing-showpage-location{
+  color: darkgray
+}
+
+.container-for-new-listing-form{
+  background-color: lightgray;
+}
+
+.form-for-new-listings{
+padding-bottom: 2%;
+padding-top: 2%;
+}
+
+.input-field-for-new-listing-form{
+  margin: .25%;
+  width: 40%;
+}
+
+.submit-button-for-new-listing{
+  margin-top: .6%;
+  margin-left: .6%
+}
+
+.profile-page-container{
+  margin: 4%;
+}
+
+
+.submitted-new-listing-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 10%
+
+}
+
+.submitted-new-listing-icon{
+  font-size: 5em;
+  color: darkgray
+}
+
+#return-to-listings{
+  width: 25%;
+  text-align: center;
+  margin-left: 38%;
+  height: 10%
+}
