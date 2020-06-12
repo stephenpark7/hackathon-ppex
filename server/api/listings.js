@@ -6,27 +6,46 @@ const authentication = require("../middlewares/authentication");
 
 router.use("/listings", authentication);
 
-// GET MY LISTINGS
-router.get("/listings/self", async (req, res) => {
+// GET LISTINGS
+router.get("/listings", async (req, res) => {
 
-  const listings = await req.db
+  const target = req.query.target;
+  const type = req.query.type;
+
+  // SPECIFY TYPE : donation, request
+  let query = {};
+  if (type) {
+    query["type"] = type;
+  }
+
+  if (target === "self") {
+
+    query["owner"] = req.userId;
+
+    // GET MY LISTINGS
+    const listings = await req.db
     .collection("listings")
-    .find( { owner: req.userId })
+    .find(query)
     .toArray();
 
-  res.status(200).json(listings);
+    res.status(200).json(listings);
 
-});
+  } else if (target === "all") {
 
-// GET ALL LISTINGS
-router.get("/listings/all", async (req, res) => {
-
-  const listings = await req.db
+    // GET ALL LISTINGS
+    const listings = await req.db
     .collection("listings")
-    .find()
+    .find(query)
     .toArray();
 
-  res.status(200).json(listings);
+    res.status(200).json(listings);
+
+  } else {
+
+    // INVALID QUERY PARAMETER
+    res.status(400).json( { message: "invalid query parameter" } )
+
+  }
 
 });
 
