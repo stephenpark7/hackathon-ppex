@@ -6,8 +6,20 @@ const authentication = require("../middlewares/authentication");
 
 router.use("/listings", authentication);
 
+// GET MY LISTINGS
+router.get("/listings/self", async (req, res) => {
+
+  const listings = await req.db
+    .collection("listings")
+    .find( { owner: req.userId })
+    .toArray();
+
+  res.status(200).json(listings);
+
+});
+
 // GET ALL LISTINGS
-router.get("/listings", async (req, res) => {
+router.get("/listings/all", async (req, res) => {
 
   const listings = await req.db
     .collection("listings")

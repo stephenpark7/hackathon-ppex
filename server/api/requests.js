@@ -6,8 +6,20 @@ const authentication = require("../middlewares/authentication");
 
 router.use("/requests", authentication);
 
+// GET MY REQUESTS
+router.get("/requests/self", async (req, res) => {
+
+  const requests = await req.db
+    .collection("requests")
+    .find( { owner: req.userId })
+    .toArray();
+
+  res.status(200).json(requests);
+
+});
+
 // GET ALL REQUESTS
-router.get("/requests", async (req, res) => {
+router.get("/requests/all", async (req, res) => {
 
   const requests = await req.db
     .collection("requests")
