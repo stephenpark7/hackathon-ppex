@@ -29,6 +29,22 @@ loginFormSubmitted=(event)=>{
         errors: [],
         successMessage: ""
     })
+    axios.post("/login", {
+        username: "a",
+        password: "a"
+    })
+    .then(res => {
+        if (res.status === 200) {
+            console.log(res.data);
+            this.props.history.push("/");
+        } else {
+            const error = new Error(res.error);
+            throw error;
+        }
+    })
+    .catch(err => {
+        console.log(err);
+    });
 }
 
 submitSignupForm=(event)=>{
@@ -49,6 +65,9 @@ submitSignupForm=(event)=>{
     })
     .then(res => {
         console.log(res.data);
+    })
+    .catch(err => {
+        console.log(err);
     });
 }
 

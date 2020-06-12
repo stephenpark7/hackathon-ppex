@@ -1,7 +1,9 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const extractUser = require("../lib/api-helpers");
 const router = express.Router();
+
+const jwt = require("jsonwebtoken");
+const secret = process.env.JWT_SECRET;
 
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -30,6 +32,33 @@ router.post("/register", async (req, res) => {
   else {
     res.status(400).json({ message: "fail" });
   }
+});
+
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    res.status(400).json({ message: "missing fields" });
+    return;
+  }
+
+  const userData = await req.db
+    .collection("users")
+    .findOne({ username: username });
+
+  if (await bcrypt.compare(password, userData.password)) {
+      const token = jwt.sign({ id: userData._id }, secret, {
+      expiresIn: 86400 // 24 hours
+    });
+    res.status(200).send({
+      id: userData._id,
+      username: username,
+      accessToken: token
+    });
+  } else {
+    res.status(400).json({ message: "invalid password" });
+  }
+
 });
 
 module.exports = router;
