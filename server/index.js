@@ -2,6 +2,7 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
+// const WebSocket = require("ws");
 const app = express();
 
 // env
@@ -35,7 +36,15 @@ if (PRODUCTION_MODE) {
   });
 }
 
+// express server
 app.listen(SERVER_PORT, () => {
   if (!PRODUCTION_MODE)
     console.log("Server started at: " + SERVER_PORT);
 });
+
+// websocket server
+// const server = new WebSocket.Server({ 
+//   server: app.listen(SERVER_PORT, () => { 
+//     console.log("Server starting at port " + SERVER_PORT); 
+//   }) 
+// });
