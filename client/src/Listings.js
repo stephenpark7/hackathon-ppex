@@ -2,7 +2,6 @@ import React from 'react';
 import ListingShowPage from './ListingShowPage';
 import SubmissionSuccess from './SubmissionSuccess';
 
-
 //issues with image
 
 export default class Listings extends React.Component{
@@ -95,7 +94,7 @@ formCompleted=(event)=>{
 
     render(){
 
-        console.log(this.state.image)
+        //console.log(this.state.image)
 
         return(
 
@@ -144,7 +143,7 @@ formCompleted=(event)=>{
                     <label htmlFor="description">Description</label>
                     <input className="input-field-for-new-listing-form" type="text" name="description" value={this.state.description} placeholder="description" onChange={this.formCompleted}/>
                     <br></br>
-                    <label htmlFor="address">Address</label>
+                    {/* <label htmlFor="address">Address</label>
                     <input className="input-field-for-new-listing-form" type="text" name="address" value={this.state.address} placeholder="address" onChange={this.formCompleted}/>
                     <br></br>
                     <label htmlFor="city">City</label>
@@ -154,7 +153,7 @@ formCompleted=(event)=>{
                     <input className="input-field-for-new-listing-form" type="text" name="state" value={this.state.state} placeholder="state" onChange={this.formCompleted}/>
                     <br></br>
                     <label htmlFor="postal">Zipcode</label>
-                    <input className="input-field-for-new-listing-form" type="text" name="postal" value={this.state.postal} placeholder="zipcode" onChange={this.formCompleted}/>
+                    <input className="input-field-for-new-listing-form" type="text" name="postal" value={this.state.postal} placeholder="zipcode" onChange={this.formCompleted}/> */}
 
                     <br></br>
 
@@ -181,7 +180,7 @@ formCompleted=(event)=>{
                 returnToListingsIndex={this.props.returnToListingsIndex}
                 donationListingShowPageExpanded={this.props.donationListingShowPageExpanded}
                 profileListingExpanded={this.props.profileListingExpanded}
-                userType={this.props.userType}
+                userType={this.props.userType} 
                 initiateNewRequestForItem={this.props.initiateNewRequestForItem}
                 initiateNewRequestToDonate={this.props.initiateNewRequestToDonate}
                 typeOfListingExpanded={this.props.typeOfListingExpanded}/> 
