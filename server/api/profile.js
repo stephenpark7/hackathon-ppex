@@ -14,3 +14,5 @@ router.get("/profile", async (req, res) => {
   res.status(200).json(listings);
 
 });
+
+module.exports = router;

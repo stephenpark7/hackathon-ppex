@@ -25,6 +25,7 @@ if (PRODUCTION_MODE) {
 
 // routing
 app.use(require("./api/users"));
+app.use(require("./api/profile"));
 app.use(require("./api/listings"));
 
 if (PRODUCTION_MODE) {

@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+
+const moment = require("moment");
 const authentication = require("../middlewares/authentication");
 
 router.use("/listings", authentication);
@@ -19,6 +21,7 @@ router.post("/listings/new", async (req, res) => {
 
   let data = req.body;
   data.owner = req.userId;
+  data.date = moment.utc();
 
   // insert listing into collection
   const listing = await req.db
