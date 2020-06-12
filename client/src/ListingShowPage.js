@@ -93,10 +93,8 @@ render(){
 
         <div className="listing-showpage-location-container">
         <h3>Location</h3>
-        <p className="listing-showpage-location">{this.props.currentlyExpandedListing.address}</p>
         <p className="listing-showpage-location">{this.props.currentlyExpandedListing.city}</p>
         <p className="listing-showpage-location">{this.props.currentlyExpandedListing.state}</p>
-        <p className="listing-showpage-location">{this.props.currentlyExpandedListing.postal}</p>
 
         </div>
 

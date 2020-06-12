@@ -78,7 +78,7 @@ chooseAnImage=()=>{
          return "./Images/latex_gloves.jpg"
     }
     else if(this.state.name==="Alcohol pads"){
-       return "./Images/alochol_pads.jpg"
+       return "./Images/alcohol_pads.jpg"
     }
 
     else if(this.state.name==="Band-aids"){
@@ -93,9 +93,6 @@ formCompleted=(event)=>{
 }
 
     render(){
-
-        //console.log(this.state.image)
-
         return(
 
             !this.props.aShowPageIsExpanded ?
