@@ -69,7 +69,74 @@ state={
   loggedIn: false
 }
 
-
+getJWT() {
+  const jwt = localStorage.getItem("jwt");
+  if (jwt) return { token: JSON.parse(jwt).accessToken, id: JSON.parse(jwt).id };
+  else return null;
+}
+fetchData() {
+  const jwt = this.getJWT();
+  if (jwt) {
+    const token = jwt.token;
+    const id = jwt.id;
+    let isDonor;
+    // get user data
+    axios({
+      method: 'get',
+      url: "/profile",
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    })
+    .then(res => {
+      isDonor = res.data.type === "donor";
+      this.setState({userType: res.data.type});
+    })
+    .catch(err => {
+      console.log(err.response.data);
+    });
+    // get listings
+    axios({
+      method: 'get',
+      url: "/listings?target=all",
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    })
+    .then(res => {
+      const listings = res.data;
+      this.setState({donationListings: listings.filter(listing => listing.type === "donation")});
+      this.setState({requestListings: listings.filter(listing => listing.type === "request")});
+      if (isDonor) {
+        this.setState({donorListings: listings.filter(listing => listing.owner === id)});
+        let pending = [];
+        let accepted = [];
+        for (let i = 0; i < listings.length; i++) {
+          if (listings[i].responses && listings[i].owner === id)
+          for (let j = 0; j < listings[i].responses.length; j++) {
+            if (listings[i].responses[j].status === "pending") {
+              listings[i].responses[j].responseId = j;
+              pending.push(listings[i].responses[j]);
+            }
+            else if (listings[i].responses[j].status === "accepted") {
+              accepted.push(listings[i].responses[j]);
+            }
+          }
+        }
+        this.setState({donorDirectRequestsReceived: pending});
+        this.setState({donorApprovedRequests: accepted});
+      } else {
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+}
 componentDidMount=()=>{
   this.fetchData();
 }
@@ -187,6 +254,12 @@ deleteListing(listing) {
   .catch(err => {
     console.log(err.response.data);
   });
+
+//reset state here
+
+  // this.setState({
+
+  // })
 }
 
 createANewListing=(listing)=>{
