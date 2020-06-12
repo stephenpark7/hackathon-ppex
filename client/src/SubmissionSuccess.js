@@ -16,6 +16,10 @@ export default class SubmissionSuccess extends React.Component{
             </React.Fragment>
         }
 
+        else if(this.props.respondedToARequest){
+            return <p>You have responded to this request!</p>
+        }
+
         else{
             return <React.Fragment>
             <h1>Your donation has been submitted.</h1>
@@ -25,7 +29,7 @@ export default class SubmissionSuccess extends React.Component{
     }
 
 render(){
-    console.log(this.props.createdANewListing)
+    console.log(this.props.respondedToARequest)
 return(
         <span className="submitted-new-listing-container">
         <i role="img" className="submitted-new-listing-icon">&#10004;</i>

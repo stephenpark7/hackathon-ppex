@@ -89,7 +89,8 @@ displayAcceptedDonationRequests=()=>{
             declineRequest={this.props.declineRequest} 
             deleteItem={this.props.deleteItem} 
             profileListingExpanded={this.props.profileListingExpanded}
-            typeOfListingExpanded={this.props.typeOfListingExpanded}/>
+            typeOfListingExpanded={this.props.typeOfListingExpanded}
+            respondedToARequest={this.props.respondedToARequest}/>
         )
     }
 }

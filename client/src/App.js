@@ -66,7 +66,8 @@ state={
   newDirectRequestForItem: false,
   newDirectRequestToDonateItem: false,
   showSubmissionPage: false,
-  loggedIn: false
+  loggedIn: false,
+  respondedToARequest: false
 }
 
 getJWT() {
@@ -290,13 +291,23 @@ acceptRequest=(listing)=> {
     console.log(err)
   });
 
-  // this.setState({
+  this.setState({
+    aShowPageIsExpanded: false,
+    showSubmissionPage: true,
+    respondedToARequest: true
 
-  // })
+  })
 }
 
-declineRequest(listing) {
+declineRequest=(listing)=> {
   console.log(listing);
+
+  this.setState({
+    aShowPageIsExpanded: false,
+    showSubmissionPage: true,
+    respondedToARequest: true
+
+  })
 }
 
 createANewListing=(listing)=>{
@@ -564,7 +575,8 @@ logIn=(token)=>{
       newDirectRequestForItem={this.state.newDirectRequestForItem}
       newDirectRequestToDonate={this.state.newDirectRequestToDonateItem}
       showSubmissionPage={this.state.showSubmissionPage}
-      typeOfListingExpanded={this.state.typeOfListingExpanded}/>}></Route>
+      typeOfListingExpanded={this.state.typeOfListingExpanded}
+      respondedToARequest={this.state.respondedToARequest}/>}></Route>
 
       <Route exact path= '/profile' render={(renderProps)=> <Profile {...renderProps}
       goToRequestListingShowPageFromProfile={this.goToRequestListingShowPageFromProfile}
@@ -590,6 +602,7 @@ logIn=(token)=>{
       donorDirectRequestsReceived={this.state.donorDirectRequestsReceived}
       donorListings={this.state.donorListings}
       typeOfListingExpanded={this.state.typeOfListingExpanded}
+      respondedToARequest={this.state.respondedToARequest}
       />}></Route>
 
      </Switch>

@@ -102,7 +102,8 @@ formCompleted=(event)=>{
             <SubmissionSuccess returnToListingsIndex={this.props.returnToListingsIndex} 
             newDirectRequestForItem={this.props.newDirectRequestForItem} 
             newDirectRequestToDonateItem={this.props.newDirectRequestToDonateItem}
-            createdANewListing={this.props.createdANewListing}/>
+            createdANewListing={this.props.createdANewListing}
+            respondedToARequest={this.props.respondedToARequest}/>
 
             :
 
@@ -180,7 +181,8 @@ formCompleted=(event)=>{
                 userType={this.props.userType} 
                 initiateNewRequestForItem={this.props.initiateNewRequestForItem}
                 initiateNewRequestToDonate={this.props.initiateNewRequestToDonate}
-                typeOfListingExpanded={this.props.typeOfListingExpanded}/> 
+                typeOfListingExpanded={this.props.typeOfListingExpanded}
+                respondedToARequest={this.props.respondedToARequest}/> 
         )
     }
 }
