@@ -6,15 +6,17 @@ const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 
 router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+  const { name, phone, email, password, address, city, state, postal, type } = req.body;
 
-  if (!username || !password) {
+  // check if missing fields
+  if (!name || !phone || !email || !password || !address || !city || !state || !postal || !type) {
     res.status(400).json({ message: "missing fields" });
     return;
   }
 
-  if (await req.db.collection("users").countDocuments({ username }) > 0) {
-    res.status(400).json({ message: "username already used" });
+  // check if email already used
+  if (await req.db.collection("users").countDocuments({ email }) > 0) {
+    res.status(400).json({ message: "email already used" });
     return;
   }
 
@@ -24,7 +26,7 @@ router.post("/register", async (req, res) => {
   // insert username into collection
   const user = await req.db
     .collection("users")
-    .insertOne({ username: username, password: hashedPassword })
+    .insertOne({ name, phone, email, password: hashedPassword, address, city, state, postal, type });
 
   if (user.insertedCount > 0) {
     res.status(200).json({ message: "success" });
@@ -35,16 +37,16 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username || !password) {
+  if (!email || !password) {
     res.status(400).json({ message: "missing fields" });
     return;
   }
 
   const userData = await req.db
     .collection("users")
-    .findOne({ username: username });
+    .findOne( { email } );
 
   if (await bcrypt.compare(password, userData.password)) {
       const token = jwt.sign({ id: userData._id }, secret, {
@@ -52,7 +54,7 @@ router.post("/login", async (req, res) => {
     });
     res.status(200).send({
       id: userData._id,
-      username: username,
+      email: email,
       accessToken: token
     });
   } else {
