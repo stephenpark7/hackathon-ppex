@@ -5,11 +5,14 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 
+const axios = require("axios");
+const geolocation = require("../lib/geolocation");
+
 router.post("/register", async (req, res) => {
-  const { name, phone, email, password, address, city, state, postal, type } = req.body;
+  const { name, phone, email, password, type } = req.body; //address, city, state, postal,
 
   // check if missing fields
-  if (!name || !phone || !email || !password || !address || !city || !state || !postal || !type) {
+  if (!name || !phone || !email || !password || !type) { //!address || !city || !state || !postal ||
     res.status(400).json({ message: "missing fields" });
     return;
   }
@@ -23,10 +26,15 @@ router.post("/register", async (req, res) => {
   // encrypt password
   const hashedPassword = await bcrypt.hash(password, 10);
 
+  // get location
+  const { GEOLOCATION_URL, GEOLOCATION_APIKEY } = geolocation;
+  const response = await axios.get(GEOLOCATION_URL + req.clientIp + GEOLOCATION_APIKEY)
+  const data = { latitude: response.data.latitude, longitude: response.data.longitude };
+
   // insert username into collection
   const user = await req.db
     .collection("users")
-    .insertOne({ name, phone, email, password: hashedPassword, address, city, state, postal, type });
+    .insertOne({ name, phone, email, password: hashedPassword, type, latitude: data.latitude, longitude: data.longitude }); // address, city, state, postal,
 
   if (user.insertedCount > 0) {
     res.status(200).json({ message: "success" });
