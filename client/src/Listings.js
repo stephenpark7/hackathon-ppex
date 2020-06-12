@@ -10,7 +10,7 @@ export default class Listings extends React.Component{
         location: "",
         quantity: "",
         description: "",
-        image: "./Images/mask.jpg",
+        image: "",
         type: ""
     }
 
@@ -37,8 +37,8 @@ formSubmitted=(event)=>{
         location: this.state.location,
         quantity: this.state.quantity,
         description: this.state.description,
-        image: this.state.image,
-        type: this.state.type
+        type: this.state.type,
+        image: this.chooseAnImage()
     })
 
     this.setState({
@@ -46,9 +46,30 @@ formSubmitted=(event)=>{
         location: "",
         quantity: "",
         description: "",
-        image: "./Images/mask.jpg",
+        image: "",
         type: ""
     })
+}
+
+chooseAnImage=()=>{
+
+    if(this.state.item==="Mask"){
+        return "./Images/mask.jpg"
+    }
+
+    else if(this.state.item==="Acetaminophen"){
+        return "./Images/acetaminophen.jpg" 
+    }
+    else if(this.state.item==="Latex gloves"){
+         return "./Images/latex_gloves.jpg"
+    }
+    else if(this.state.item==="Alcohol pads"){
+       return "./Images/alochol_pads.jpg"
+    }
+
+    else if(this.state.item==="Bandaids"){
+        return "./Images/bandaid_box.jpg"
+    }
 }
 
 formCompleted=(event)=>{
@@ -76,15 +97,22 @@ formCompleted=(event)=>{
                     <h2>Submit a New Listing</h2>
                     <div className="container-for-new-listing-form">
                     <form onSubmit={this.formSubmitted} className="form-for-new-listings">
-                    <input className="input-field-for-new-listing-form" type="text" name="item" value={this.state.item} placeholder="item to be listed" onChange={this.formCompleted}/>
+
+                    <select className="input-field-for-new-listing-form" name="item" onChange={this.formCompleted}>
+                    <option value="-">-</option>
+                    <option value="Mask">Mask</option>
+                    <option value="Band-aids">Band-aids</option>
+                    <option value="Alcohol pads">Alcohol pads</option>
+                    <option value="Latex gloves">Latex Gloves</option>
+                    <option value="Acetaminophen">Acetaminophen</option>
+                    </select>
+
                     <br></br>
                     <input className="input-field-for-new-listing-form" type="text" name="location" value={this.state.location} placeholder="your location" onChange={this.formCompleted}/>
                     <br></br>
                     <input className="input-field-for-new-listing-form" type="text" name="quantity" value={this.state.quantity} placeholder="quantity" onChange={this.formCompleted}/>
                     <br></br>
                     <input className="input-field-for-new-listing-form" type="text" name="description" value={this.state.description} placeholder="description" onChange={this.formCompleted}/>
-                    <br></br>
-                    <input className="input-field-for-new-listing-form" type="text" name="image" readOnly value={this.state.image} placeholder="image"/>
                     <br></br>
                     <input className="radio-button-for-new-listing-form" type="radio" id="donation" name="type" value="Donation" onChange={this.formCompleted}/>
                     <label htmlFor="donation">Donation</label>

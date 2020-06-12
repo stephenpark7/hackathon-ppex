@@ -237,6 +237,8 @@ initiateNewRequestToDonate=(item)=>{
 
   render(){
 
+    console.log(this.state.donationListings)
+
   return (
     <div>
     <Router>
