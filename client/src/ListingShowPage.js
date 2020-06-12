@@ -2,9 +2,76 @@ import React from 'react';
 
 export default class DonationListingShowPage extends React.Component{
 
+    //these first functions are for when the user is navigating from the profile page
+
+
+profileListingIsExpanded=()=>{
+        return <button className="button">Delete This Listing</button> 
+}
+
+ifDirectDonationOrRequestExpanded=()=>{
+    return <div>
+        <button className="button">Accept</button> 
+        <button className="button">Decline</button> 
+    </div>
+}
+
+ifRequestApproved=()=>{
+    return <div>
+    </div>
+}
+
+whichButtonsToRenderFromProfilePage=()=>{
+    if(this.props.typeOfListingExpanded === "donation listing" || this.props.typeOfListingExpanded === "request listing"){
+        return this.profileListingIsExpanded()
+    }
+
+    else if(this.props.typeOfListingExpanded=== "direct donation" || this.props.typeOfListingExpanded=== "direct request"){
+        return this.ifDirectDonationOrRequestExpanded()
+    }
+    else{
+        return this.ifRequestApproved()
+    }
+}
+
+//the following function are for when a uesr is navigating from the general listings
+
+
 
 displayInfoAboutRequest=()=>{
-    return <div className="div-for-showpage">
+
+    return <div>
+
+        {this.props.donationListingShowPageExpanded ?
+
+            this.props.userType==="donor" ?
+            <React.Fragment></React.Fragment>
+            :
+            <button className="button" onClick={()=>this.props.initiateNewRequestForItem(this.props.currentlyExpandedListing)}>Request This Donation</button>
+        
+        :
+            this.props.userType==="requester" ?
+            <React.Fragment></React.Fragment>
+            :   
+            <button className="button" onClick={()=>this.props.initiateNewRequestToDonate(this.props.currentlyExpandedListing)}>Fulfill This Request</button>       
+        }
+
+    </div>
+}
+
+whichButtonsToRender=()=>{
+    if(this.props.profileListingExpanded){
+        return this.whichButtonsToRenderFromProfilePage()
+    }
+    else{
+        return this.displayInfoAboutRequest()
+    }
+}
+    
+render(){
+
+    return(
+        <div className="div-for-showpage">
         
         {this.props.donationListingShowPageExpanded ?
         <h1>Donation</h1>
@@ -25,41 +92,13 @@ displayInfoAboutRequest=()=>{
         <h3>Location</h3>
         <p className="listing-showpage-location">{this.props.currentlyExpandedListing.location}</p>
         </div>
-        {this.props.donationListingShowPageExpanded ?
 
-            this.props.userType==="donor" ?
-            
-            <React.Fragment></React.Fragment>
-                :
-            <button className="button" onClick={()=>this.props.initiateNewRequestForItem(this.props.currentlyExpandedListing)}>Request This Donation</button>
-        :
-            this.props.userType==="requester" ?
-
-            <React.Fragment></React.Fragment>
-            :
-            <button className="button" onClick={()=>this.props.initiateNewRequestToDonate(this.props.currentlyExpandedListing)}>Fulfill This Request</button>       
-}
-
-<button className= "button" onClick={this.props.returnToListingsIndex}>Return to Listings</button>
-
-
-            {this.props.profileListingExpanded ?
-
-        <button className="button">This button will do something tomorrow</button>
-
-        :
-
-        <React.Fragment></React.Fragment>
-
-        }
-
-
-    </div>
-}
+        {this.whichButtonsToRender()}
     
-render(){
-    return(
-        this.displayInfoAboutRequest()
+        <button className= "button" onClick={this.props.returnToListingsIndex}>Return to Listings</button>
+
+        </div>
+
         )
 }
 

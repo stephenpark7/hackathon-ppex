@@ -74,16 +74,19 @@ toggleSignIn=()=>{
                 <p className="login--and-signup-messages">{this.state.SuccessMessage}</p>
                 }
 
-            <h3 className= "heading-for-forms">Create an account or <p className="toggle-login" onClick= {this.toggleSignIn}>Sign in</p>
-</h3> 
+            <h1 className="heading">Donation4U</h1>
 
             <form onSubmit={this.submitSignupForm} className= "forms">
-                <input className="login-and-signup-form-fields" type="text" name="signupUsername" value={this.state.signupUsername} placeholder="create username" onChange={this.formFilledOut}/>
+                <p className="login-labels">Username</p>
+                <input className="login-and-signup-form-fields" type="text" name="signupUsername" value={this.state.signupUsername} onChange={this.formFilledOut}/>
+                <p className="login-labels">Password</p>
+                <input className="login-and-signup-form-fields" type="text" name="signupPassword" value={this.state.signupPassword} onChange={this.formFilledOut}/>
                 <br></br>
-                <input className="login-and-signup-form-fields" type="text" name="signupPassword" value={this.state.signupPassword} placeholder="enter a password" onChange={this.formFilledOut}/>
-                <br></br>
-                <input className="submit-buttons" type="submit" value="Sign up" />
+                <input className="submit-buttons" type="submit" value="Register" />
             </form>
+
+            <h3 className="toggle-login" onClick= {this.toggleSignIn}>Login</h3>
+
 
             </div>
 
@@ -96,9 +99,6 @@ toggleSignIn=()=>{
                 :
                 <p className="login--and-signup-messages">{this.state.SuccessMessage}</p>
                 }
-
-            <h3 className= "heading-for-forms">Sign in or <p className= "toggle-login" onClick= {this.toggleSignIn}>Create an account</p></h3> 
-            
             
             {
             this.state.errors ? 
@@ -107,13 +107,18 @@ toggleSignIn=()=>{
             <p className="login-messages">{this.state.SuccessMessage}</p>
              }
 
+            <h1 className="heading">Donation4U</h1>            
+
             <form onSubmit={this.loginFormSubmitted} className= "forms">
-                <input className="login-and-signup-form-fields" type="text" name="loginUsername" value={this.state.loginUsername} placeholder="enter username" onChange={this.formFilledOut}/>
+                <p className="login-labels">Username</p>
+                <input id="username" className="login-and-signup-form-fields" type="text" name="loginUsername" value={this.state.loginUsername} onChange={this.formFilledOut}/>
+                <p className="login-labels">Password</p>
+                <input className="login-and-signup-form-fields" type="text" name="loginPassword" value={this.state.loginPassword} onChange={this.formFilledOut}/>
                 <br></br>
-                <input className="login-and-signup-form-fields" type="text" name="loginPassword" value={this.state.loginPassword} placeholder="enter password" onChange={this.formFilledOut}/>
-                <br></br>
-                <input className="submit-buttons" type="submit" value="Log In" />
+                <input className="submit-buttons" type="submit" value="Login" />
             </form>
+
+            <h3 className= "toggle-login" onClick= {this.toggleSignIn}>Register</h3> 
 
             </div>
 

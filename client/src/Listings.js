@@ -111,7 +111,8 @@ formCompleted=(event)=>{
                 profileListingExpanded={this.props.profileListingExpanded}
                 userType={this.props.userType}
                 initiateNewRequestForItem={this.props.initiateNewRequestForItem}
-                initiateNewRequestToDonate={this.props.initiateNewRequestToDonate}/> 
+                initiateNewRequestToDonate={this.props.initiateNewRequestToDonate}
+                typeOfListingExpanded={this.props.typeOfListingExpanded}/> 
         )
     }
 }

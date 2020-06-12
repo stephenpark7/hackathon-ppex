@@ -62,7 +62,8 @@ goToDonationListingShowPage=(donation)=>{
     aShowPageIsExpanded: true,
     currentlyExpandedListing: donation,
     createdANewListing: false,
-    typeOfListingExpanded: "donation"
+    typeOfListingExpanded: "donation",
+    profileListingExpanded: false
   })
 }
 
@@ -73,7 +74,8 @@ goToRequestListingShowPage=(request)=>{
     aShowPageIsExpanded: true,
     currentlyExpandedListing: request,  
     createdANewListing: false,
-    typeOfListingExpanded: "request"
+    typeOfListingExpanded: "request",
+    profileListingExpanded: false
   })
 }
 
@@ -88,8 +90,7 @@ returnToListingsIndex=()=>{
     typeOfListingExpanded: "",
     newDirectRequestForItem: false,
     newDirectRequestToDonate: false,
-    showSubmissionPage: false
-
+    showSubmissionPage: false,
   })
 }
 
@@ -122,7 +123,8 @@ goToDonationListingShowPageFromProfile=(donation)=>{
     currentlyExpandedListing: donation,
     profileListingExpanded: true,
     createdANewListing: false,
-    typeOfListingExpanded: "user's donation listing"
+    showSubmissionPage: false,
+    typeOfListingExpanded: "donation listing"
   })
 }
 
@@ -134,7 +136,8 @@ goToRequestListingShowPageFromProfile=(request)=>{
     currentlyExpandedListing: request   ,
     profileListingExpanded: true,
     createdANewListing: false,
-    typeOfListingExpanded: "user's request listing expanded"
+    showSubmissionPage: false,
+    typeOfListingExpanded: "request listing"
   })
 }
 
@@ -146,6 +149,7 @@ goToDirectRequestFromProfile=(request)=>{
     currentlyExpandedListing: request   ,
     profileListingExpanded: true,
     createdANewListing: false,
+    showSubmissionPage: false,
     typeOfListingExpanded: "direct request"
   })
 }
@@ -158,8 +162,37 @@ goToDirectDonationFromProfile=(request)=>{
     currentlyExpandedListing: request   ,
     profileListingExpanded: true,
     createdANewListing: false,
+    showSubmissionPage: false,
     typeOfListingExpanded: "direct donation"
   })
+}
+
+goToApprovedRequestsFromProfile=(request)=>{
+this.setState({
+  requestListingShowPageExpanded: true,
+  donationListingShowPageExpanded: false,
+  aShowPageIsExpanded: true,
+  currentlyExpandedListing: request,
+  profileListingExpanded: true,
+  createdANewListing: false,
+  showSubmissionPage: false,
+  typeOfListingExpanded: "approved requests"
+})
+
+}
+
+goToAcceptedDonationsFromProfile=(donation)=>{
+  this.setState({
+    requestListingShowPageExpanded: true,
+    donationListingShowPageExpanded: false,
+    aShowPageIsExpanded: true,
+    currentlyExpandedListing: donation,
+    profileListingExpanded: true,
+    createdANewListing: false,
+    showSubmissionPage: false,
+    typeOfListingExpanded: "accepted donations"
+  })
+
 }
 
 initiateNewRequestForItem=(item)=>{
@@ -235,11 +268,16 @@ initiateNewRequestToDonate=(item)=>{
       createNewDirectRequestToDonate={this.createNewDirectRequestToDonate}
       newDirectRequestForItem={this.state.newDirectRequestForItem}
       newDirectRequestToDonate={this.state.newDirectRequestToDonateItem}
-      showSubmissionPage={this.state.showSubmissionPage}/>}></Route>
+      showSubmissionPage={this.state.showSubmissionPage}
+      typeOfListingExpanded={this.state.typeOfListingExpanded}/>}></Route>
 
       <Route exact path= '/profile' render={(renderProps)=> <Profile {...renderProps}
       goToRequestListingShowPageFromProfile={this.goToRequestListingShowPageFromProfile}
       goToDonationListingShowPageFromProfile={this.goToDonationListingShowPageFromProfile}
+      goToDirectRequestFromProfile={this.goToDirectRequestFromProfile}
+      goToDirectDonationFromProfile={this.goToDirectDonationFromProfile}
+      goToApprovedRequestsFromProfile={this.goToApprovedRequestsFromProfile}
+      goToAcceptedDonationsFromProfile={this.goToAcceptedDonationsFromProfile}
       aShowPageIsExpanded={this.state.aShowPageIsExpanded}
       requestListingShowPageExpanded={this.state.requestListingShowPageExpanded}
       donationListingShowPageExpanded={this.state.donationListingShowPageExpanded}
@@ -252,7 +290,9 @@ initiateNewRequestToDonate=(item)=>{
       requestorAcceptedDonations={this.state.requestorAcceptedDonations}
       donorApprovedRequests={this.state.donorApprovedRequests}
       donorDirectRequestsReceived={this.state.donorDirectRequestsReceived}
-      donorListings={this.state.donorListings}/>}></Route>
+      donorListings={this.state.donorListings}
+      typeOfListingExpanded={this.state.typeOfListingExpanded}
+      />}></Route>
 
      </Switch>
 

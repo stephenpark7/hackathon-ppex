@@ -24,7 +24,9 @@ margin-top: 5%;
 }
 
 .toggle-login{
-color: skyblue;
+color: darkgray;
+text-align: center;
+font: 80%
 }
 
 .toggle-login:hover{
@@ -32,9 +34,8 @@ color: skyblue;
 }
 
 .login-and-signup-form-fields{
-  width: 30%;
+  width: 40%;
   height: 5%;
-  margin: 1.5%;
 }
 
 .containers-for-login-page{
@@ -45,9 +46,14 @@ color: skyblue;
 }
 
 .submit-buttons{
-  width: 20%;
-  height: 5%;
-  margin-top: 2%;
+  width: 40%;
+  margin-top: 5%;
+  background-color: rgb(75, 190, 206);
+  border: 0;
+  padding: 1%;
+  color: whitesmoke;
+  border-radius: 8% 8% 8% 8%;
+  font-size: 100%
 }
 
 .tabs{
@@ -67,10 +73,6 @@ color: skyblue;
 }
 
 .forms{
-  text-align: center;
-}
-
-.heading-for-forms{
   text-align: center;
 }
 
@@ -180,4 +182,11 @@ padding-top: 2%;
   text-align: center;
   margin-left: 38%;
   height: 10%
+}
+
+.login-labels{
+  text-align: left;
+  margin-left: 28%;
+  font-size: 75%;
+  color: darkgray
 }
