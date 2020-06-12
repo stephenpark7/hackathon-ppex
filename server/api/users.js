@@ -1,6 +1,5 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const extractUser = require("../lib/api-helpers");
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
