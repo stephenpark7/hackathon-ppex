@@ -3,9 +3,9 @@ TODO:
   ☐ Add validation to register
   ☐ Add protection to update queries
   ☐ 
-  ☐ 
-  ☐ 
-  ☐ 
-  ☐ 
+  ✔ Check to see if it's a donation before you can request @done(20-06-12 06:15)
+  ✔ Check to see if it's a request before you can donate @done(20-06-12 06:15)
+  ☐ Make it so you can't donate to your own request
+  ✔ Make it so you can only update your own requests @done(20-06-12 06:01)
   ☐ 
   ☐ 
