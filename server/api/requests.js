@@ -38,4 +38,21 @@ router.post("/requests/new", async (req, res) => {
 
 });
 
+// DELETE A REQUEST
+router.delete("/request/:id", async (req, res) => {
+
+  const requestId = req.params.id;
+
+  const requestToDelete = await req.db
+    .collection("requests")
+    .deleteOne( { _id: new req.objectID(requestId) } );
+
+  if (requestToDelete.deletedCount > 0) {
+    res.status(200).json({ message: "successfully deleted request" });
+  } else {
+    res.status(400).json({ message: "failed to delete request" });
+  }
+
+});
+
 module.exports = router;

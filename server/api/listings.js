@@ -38,4 +38,21 @@ router.post("/listings/new", async (req, res) => {
 
 });
 
+// DELETE A LISTING
+router.delete("/listing/:id", async (req, res) => {
+
+  const listingId = req.params.id;
+
+  const listingToDelete = await req.db
+    .collection("listings")
+    .deleteOne( { _id: new req.objectID(listingId) } );
+
+  if (listingToDelete.deletedCount > 0) {
+    res.status(200).json({ message: "successfully deleted listing" });
+  } else {
+    res.status(400).json({ message: "failed to delete listing" });
+  }
+
+});
+
 module.exports = router;

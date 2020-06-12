@@ -4,6 +4,7 @@ const authentication = require("../middlewares/authentication");
 
 router.use("/profile", authentication);
 
+// GET MY LISTINGS
 router.get("/profile", async (req, res) => {
 
   const listings = await req.db
@@ -15,14 +16,14 @@ router.get("/profile", async (req, res) => {
 
 });
 
+// DELETE ACCOUNT
 router.delete("/profile", async (req, res) => {
 
-  const userData = await req.db
+  const userToDelete = await req.db
     .collection("users")
     .deleteOne( { _id: new req.objectID(req.userId) } );
 
-  if (userData.deletedCount > 0) {
-
+  if (userToDelete.deletedCount > 0) {
     // delete all listings
     await req.db
       .collection("listings")
