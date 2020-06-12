@@ -30,12 +30,12 @@ loginFormSubmitted=(event)=>{
         successMessage: ""
     })
     axios.post("/login", {
-        username: "a",
-        password: "a"
+        email: "atkins@gmail.com",
+        password: "password"
     })
     .then(res => {
         if (res.status === 200) {
-            console.log(res.data);
+            localStorage.setItem("jwt", JSON.stringify(res.data));
             this.props.history.push("/");
         } else {
             const error = new Error(res.error);
