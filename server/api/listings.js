@@ -154,6 +154,8 @@ router.put("/listing/:id", authentication, async (req, res) => {
 // ACCEPT A REQUEST / DONATION
 router.put("/listing/accept/:id", authentication, async (req, res) => {
 
+console.log(req.params.id);
+
   const listingId = req.params.id;
   const { responseId } = req.body;
 
