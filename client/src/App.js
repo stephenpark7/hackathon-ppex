@@ -65,87 +65,10 @@ state={
   typeOfListingExpanded: "",
   newDirectRequestForItem: false,
   newDirectRequestToDonateItem: false,
-  showSubmissionPage: false
+  showSubmissionPage: false,
+  loggedIn: false
 }
 
-getJWT() {
-  const jwt = localStorage.getItem("jwt");
-  if (jwt) return { token: JSON.parse(jwt).accessToken, id: JSON.parse(jwt).id };
-  else return null;
-}
-
-fetchData() {
-  const jwt = this.getJWT();
-
-  if (jwt) {
-    const token = jwt.token;
-    const id = jwt.id;
-    let isDonor;
-  
-    // get user data
-    axios({
-      method: 'get',
-      url: "/profile",
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': token
-      }
-    })
-    .then(res => {
-      isDonor = res.data.type === "donor";
-      this.setState({userType: res.data.type});
-    })
-    .catch(err => {
-      console.log(err.response.data);
-    });
-  
-    // get listings
-    axios({
-      method: 'get',
-      url: "/listings?target=all",
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': token
-      }
-    })
-    .then(res => {
-      const listings = res.data;
-      this.setState({donationListings: listings.filter(listing => listing.type === "donation")});
-      this.setState({requestListings: listings.filter(listing => listing.type === "request")});
-      if (isDonor) {
-        this.setState({donorListings: listings.filter(listing => listing.owner === id)});
-  
-        let pending = [];
-        let accepted = [];
-
-        for (let i = 0; i < listings.length; i++) {
-          if (listings[i].responses && listings[i].owner === id)
-          for (let j = 0; j < listings[i].responses.length; j++) {
-            if (listings[i].responses[j].status === "pending") {
-              pending.push(listings[i].responses[j]);
-            }
-            else if (listings[i].responses[j].status === "accepted") {
-              accepted.push(listings[i].responses[j]);
-            }
-          }
-        }
-
-        this.setState({donorDirectRequestsReceived: pending});
-        this.setState({donorApprovedRequests: accepted});
-      } else {
-
-
-
-      }
-  
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  }
-}
 
 componentDidMount=()=>{
   this.fetchData();
@@ -402,39 +325,115 @@ initiateNewRequestToDonate=(item)=>{
   })
 }
 
-// createNewDirectRequestForItem=()=>{
+logOut=()=>{
+  localStorage.clear()
+
+  this.setState({
+    loggedIn: false
+  })
+}
+
+logIn=(token)=>{
+
+  if (JSON.parse(localStorage.getItem("jwt")).accessToken){
+
+
+    const token = JSON.parse(localStorage.getItem("jwt")).accessToken;
+    const id = JSON.parse(localStorage.getItem("jwt")).id;
   
-//   //this will trigger the rendering of a form to submit a request for an item that is listed
-
-// }
-
-// createNewDirectRequestToDonate=()=>{
-//   //this will trigger the rendering of a form to submit a request to donate to someone who posted a request
-
-// }
-
-// submitNewDirectRequestToDonate=()=>{
-
-// }
-
-// submitNewDirectRequestForItem=()=>{
+    this.setState({
+          loggedIn: true
+        })
   
-// }
+  
+    let isDonor;
+  
+    // get user data
+    axios({
+      method: 'get',
+      url: "/profile",
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    })
+    .then(res => {
+      isDonor = res.data.type === "donor";
+      this.setState({userType: res.data.type});
+    })
+    .catch(err => {
+      console.log(err.response.data);
+    });
+  
+    // get listings
+    axios({
+      method: 'get',
+      url: "/listings?target=all",
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    })
+    .then(res => {
+  
+      console.log(res.data)
+      const listings = res.data;
+      this.setState({donationListings: listings.filter(listing => listing.type === "donation")});
+      this.setState({requestListings: listings.filter(listing => listing.type === "request")});
+      if (isDonor) {
+        this.setState({donorListings: listings.filter(listing => listing.owner === id)});
+  
+        const pending = [];
+        const accepted = [];
+  
+        for (let i = 0; i < listings.length; i++) {
+  
+          if(listings[i].responses){
+          for (let j = 0; j < listings[i].responses.length; j++) {
+            if (listings[i].responses[j].status === "pending") {
+              pending.push(listings[i].responses[j]);
+            }
+            else if (listings[i].responses[j].status === "accepted") {
+              accepted.push(listings[i].responses[j]);
+            }
+          }
+  
+        this.setState({donorDirectRequestsReceived: pending});
+        this.setState({donorApprovedRequests: accepted});
+      }
+    }
+  }
+  
+    })
+  
+    .catch(err => {
+      console.log(err)
+      // console.log(err.response.data);
+    });
+  }
 
+  this.setState({
+    loggedIn: true
+  })
+
+}
 
   render(){
 
   return (
+
     <div>
     <Router>
       
-      <NavigationBar returnToListingsIndex={this.returnToListingsIndex}/>
+      <NavigationBar returnToListingsIndex={this.returnToListingsIndex} loggedIn={this.state.loggedIn} logOut={this.logOut}/>
   
      <Switch>
 
       <Route exact path= '/' render={(renderProps)=> <Home {...renderProps}/>}/>
 
-      <Route exact path= '/login' render={(renderProps)=> <Login {...renderProps} fetchData={this.fetchData} />}></Route>
+      <Route exact path= '/login' render={(renderProps)=> <Login {...renderProps} logIn={this.logIn}/>}></Route>
 
       <Route exact path= '/listings' render={(renderProps)=> <Listings {...renderProps} donationListings= {this.state.donationListings} 
       requestListings= {this.state.requestListings}

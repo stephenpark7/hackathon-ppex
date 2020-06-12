@@ -7,14 +7,23 @@ export default class Login extends React.Component{
 state={
     loginUsername: "",
     loginPassword: "",
+
     signupUsername: "",
     signupPassword: "",
+    signupEmail: "",
+    signupPhone: "",
+    signupType: "",
+
     errors: [],
     successMessage: "",
     toggleLogin: false
 }
 
 formFilledOut=(event)=>{
+
+    console.log(event.target.name)
+    console.log(event.target.value)
+
     this.setState({
         [event.target.name]: event.target.value
     })
@@ -38,38 +47,42 @@ loginFormSubmitted=(event)=>{
         if (res.status === 200) {
             localStorage.setItem("jwt", JSON.stringify(res.data));
             this.props.history.push("/");
+            this.props.logIn(localStorage.getItem("jwt"))
         } else {
             const error = new Error(res.error);
             throw error;
         }
     })
     .catch(err => {
-        console.log(err);
+        console.log(err)
+        // console.log(err.response.data);
     });
 
     this.setState({
         loginUsername: "",
         loginPassword: "",
+
+        signupUsername: "",
+        signupPassword: "",
+        signupEmail: "",
+        signupPhone: "",
+        signupType: "",
+
         errors: [],
-        successMessage: ""
+        successMessage: "",
+        toggleLogin: false
     })
 }
 
 submitSignupForm=(event)=>{
     event.preventDefault();
 
-    console.log("signup form submitted");
-
-    this.setState({
-        signupUsername: "",
-        signupPassword: "",
-        errors: [],
-        successMessage: ""
-    })
-
     axios.post("/register", {
-        username: this.state.signupUsername,
-        password: this.state.signupPassword
+        name: this.state.signupUsername,
+        password: this.state.signupPassword,
+        email: this.state.signupEmail,
+        phone: this.state.signupPhone,
+        type: this.state.signupType
     })
     .then(res => {
         console.log(res.data);
@@ -77,6 +90,21 @@ submitSignupForm=(event)=>{
     .catch(err => {
         console.log(err.response.data);
     });
+
+    this.setState({
+        loginUsername: "",
+        loginPassword: "",
+
+        signupUsername: "",
+        signupPassword: "",
+        signupEmail: "",
+        signupPhone: "",
+        signupType: "",
+
+        errors: [],
+        successMessage: "",
+        toggleLogin: false
+    })
 }
 
 toggleSignIn=()=>{
@@ -107,8 +135,17 @@ toggleSignIn=()=>{
                 <p className="login-labels">Username</p>
                 <input className="login-and-signup-form-fields" type="text" name="signupUsername" value={this.state.signupUsername} onChange={this.formFilledOut}/>
                 <p className="login-labels">Password</p>
-                <input className="login-and-signup-form-fields" type="text" name="signupPassword" value={this.state.signupPassword} onChange={this.formFilledOut}/>
-                <br></br>
+                <input className="login-and-signup-form-fields" type="password" name="signupPassword" value={this.state.signupPassword} onChange={this.formFilledOut}/>
+                <p className="login-labels">E-mail</p>
+                <input className="login-and-signup-form-fields" type="text" name="signupEmail" value={this.state.signupEmail} onChange={this.formFilledOut}/>
+                <p className="login-labels">Phone</p>
+                <input className="login-and-signup-form-fields" type="text" name="signupPhone" value={this.state.signupPhone} onChange={this.formFilledOut}/><br></br>
+                
+                <p className="login-labels">Donor <input type="radio" id="donor" name="signupType" value="donor" onChange={this.formFilledOut}/>
+                </p>
+                <p className="login-labels">Requester <input type="radio" id="requester" name="signupType" value="requester" onChange={this.formFilledOut}/>
+                </p>
+
                 <input className="submit-buttons" type="submit" value="Register" />
             </form>
 

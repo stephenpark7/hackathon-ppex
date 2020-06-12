@@ -93,9 +93,6 @@ formCompleted=(event)=>{
 }
 
     render(){
-
-        //console.log(this.state.image)
-
         return(
 
             !this.props.aShowPageIsExpanded ?

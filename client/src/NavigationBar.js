@@ -17,6 +17,8 @@ onClick={props.returnToListingsIndex}
 > Home
 </NavLink>
 
+{!props.loggedIn ?
+
 <NavLink
 to="/login"
 exact
@@ -25,6 +27,19 @@ activeClassName="navbar-link-active"
 onClick={props.returnToListingsIndex}
 > Login/Signup
 </NavLink>
+
+:
+
+<NavLink
+to="/login"
+exact
+className="navbar-link"
+activeClassName="navbar-link-active"
+onClick={props.logOut}
+> Logout
+</NavLink>
+
+}
 
 <NavLink
 to="/listings"
