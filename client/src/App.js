@@ -6,12 +6,15 @@ import Home from './Home';
 import Login from './Login';
 import Listings from './Listings';
 import Profile from './Profile';
+import axios from 'axios';
 
 export default class App extends React.Component {
 
 state={
 
   userType:"requester",
+
+  //combine donationListings and RequestListings, call it generaListings in state, keep in mind that type is an attribute
 
   donationListings: [{name: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2", unit: "box(es)", address: "1311 Maple St.", city: "New York", state: "New York", postal: "11104", image: "./Images/latex_gloves.jpg"}, 
   {name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"},
@@ -47,13 +50,24 @@ state={
   showSubmissionPage: false
 }
 
-// componentDidMount=()=>{
+componentDidMount=()=>{
 
-//   
-//   })
+  let token= localStorage.getItem("jwt");
 
+  axios({
+    method: 'get',
+    url: "listings?target=all",
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    }
+  })
+.then(res=>{
+  console.log(res)
+})
 
-// }
+}
 
 goToDonationListingShowPage=(donation)=>{
   this.setState({
@@ -237,7 +251,6 @@ initiateNewRequestToDonate=(item)=>{
 
 
   render(){
-    console.log(this.state.requestListings)
 
   return (
     <div>

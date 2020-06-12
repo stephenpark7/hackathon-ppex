@@ -23,15 +23,9 @@ formFilledOut=(event)=>{
 loginFormSubmitted=(event)=>{
     event.preventDefault();
 
-    this.setState({
-        loginUsername: "",
-        loginPassword: "",
-        errors: [],
-        successMessage: ""
-    })
     axios.post("/login", {
-        email: "atkins@gmail.com",
-        password: "password"
+        email: this.state.loginUsername,
+        password: this.state.loginPassword
     })
     .then(res => {
         if (res.status === 200) {
@@ -45,6 +39,13 @@ loginFormSubmitted=(event)=>{
     .catch(err => {
         console.log(err.response.data);
     });
+
+    this.setState({
+        loginUsername: "",
+        loginPassword: "",
+        errors: [],
+        successMessage: ""
+    })
 }
 
 submitSignupForm=(event)=>{
@@ -60,8 +61,8 @@ submitSignupForm=(event)=>{
     })
 
     axios.post("/register", {
-        username: "test",
-        password: "test"
+        username: this.state.signupUsername,
+        password: this.state.signupPassword
     })
     .then(res => {
         console.log(res.data);
