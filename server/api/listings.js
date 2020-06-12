@@ -4,16 +4,21 @@ const router = express.Router();
 const moment = require("moment");
 const authentication = require("../middlewares/authentication");
 
+const axios = require("axios");
+const geolocation = require("../lib/geolocation");
+const distance = require("../lib/distance");
+
 // GET LISTINGS
 router.get("/listings", authentication, async (req, res) => {
 
   const target = req.query.target;
   const type = req.query.type;
+  const sort = req.query.sort;
 
   // SPECIFY TYPE : donation, request
   let query = {};
   if (type) {
-    query["type"] = type;
+    query.type = type;
   }
 
   if (target === "self") {
@@ -36,6 +41,22 @@ router.get("/listings", authentication, async (req, res) => {
     .find(query)
     .toArray();
 
+    // FILTER : nearby
+    if (sort) {
+      if (sort === "nearby") {
+        
+        const { GEOLOCATION_URL, GEOLOCATION_APIKEY } = geolocation;
+        const response = await axios.get(GEOLOCATION_URL + req.clientIp + GEOLOCATION_APIKEY)
+        const data = { latitude: response.data.latitude, longitude: response.data.longitude };
+
+        for (let i = 0; i < listings.length; i++) {
+          const dist = distance(data.latitude, data.longitude, listings[i].latitude, listings[i].longitude);
+          listings[i].dist = dist;
+        }
+
+      }
+    }
+
     res.status(200).json(listings);
 
   } else {
@@ -50,15 +71,20 @@ router.get("/listings", authentication, async (req, res) => {
 // ADD A NEW LISTING
 router.post("/listings/new", authentication, async (req, res) => {
 
-  const { name, quantity, unit, description, image, address, city, state, postal, type } = req.body;
+  const { name, quantity, unit, description, image, type } = req.body; //address, city, state, postal,
 
   // validation
-  if (!name || !quantity || !unit || !description || !image || !address || !city || !state || !postal || !type) {
+  if (!name || !quantity || !unit || !description || !image || !type) { // || !address || !city || !state || !postal
     res.status(400).json({ message: "missing fields" });
     return;
   }
 
-  let listingData = { name, quantity, unit, description, image, address, city, state, postal, type };
+  // get location
+  const { GEOLOCATION_URL, GEOLOCATION_APIKEY } = geolocation;
+  const response = await axios.get(GEOLOCATION_URL + req.clientIp + GEOLOCATION_APIKEY)
+  const data = { latitude: response.data.latitude, longitude: response.data.longitude };
+
+  let listingData = { name, quantity, unit, description, image, longitude: data.longitude, latitude: data.latitude, type }; // address, city, state, postal,
   listingData.owner = req.userId;
   listingData.date = moment.utc();
 
@@ -122,7 +148,7 @@ router.put("/listing/:id", authentication, async (req, res) => {
 
 });
 
-// ACCEPT A REQUEST / ACCEPT A DONATION
+// ACCEPT A REQUEST / DONATION
 router.put("/listing/accept/:id", authentication, async (req, res) => {
 
   const listingId = req.params.id;
