@@ -50,6 +50,28 @@ router.post("/requests/new", async (req, res) => {
 
 });
 
+// UPDATE A REQUEST
+router.put("/request/:id", async (req, res) => {
+
+  const requestId = req.params.id;
+  const newData = req.body;
+
+  const request = await req.db
+    .collection("requests")
+    .updateOne( 
+      { _id: new req.objectID(requestId) },
+      { $set: newData } 
+    );
+
+  if (request.modifiedCount > 0) {
+    res.status(200).json({ message: "successfully updated request" });
+  } else {
+    res.status(200).json({ message: "failed to update request" });
+  }
+
+});
+
+
 // DELETE A REQUEST
 router.delete("/request/:id", async (req, res) => {
 

@@ -50,6 +50,27 @@ router.post("/listings/new", async (req, res) => {
 
 });
 
+// UPDATE A LISTING
+router.put("/listing/:id", async (req, res) => {
+
+  const listingId = req.params.id;
+  const newData = req.body;
+
+  const listing = await req.db
+    .collection("listings")
+    .updateOne( 
+      { _id: new req.objectID(listingId) },
+      { $set: newData } 
+    );
+
+  if (listing.modifiedCount > 0) {
+    res.status(200).json({ message: "successfully updated listing" });
+  } else {
+    res.status(200).json({ message: "failed to update listing" });
+  }
+
+});
+
 // DELETE A LISTING
 router.delete("/listing/:id", async (req, res) => {
 
