@@ -262,6 +262,41 @@ deleteListing(listing) {
   // })
 }
 
+deleteItem=(item)=> {
+  this.deleteListing(item);
+  this.returnToListingsIndex();
+}
+
+acceptRequest(listing) {
+
+  console.log(listing);
+
+  const { token } = this.getJWT();
+  axios({
+    method: 'put',
+    url: "/listing/accept/" + listing._id,
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    },
+    data: {
+      responseId: listing.responseId
+    }
+  })
+  .then(res => {
+    console.log(res.data);
+    this.fetchData();
+  })
+  .catch(err => {
+    console.log(err.response.data);
+  });
+}
+
+declineRequest(listing) {
+  console.log(listing);
+}
+
 createANewListing=(listing)=>{
 
   console.log("clicked")
@@ -379,11 +414,6 @@ initiateNewRequestForItem=(item)=>{
     donorDirectRequestsReceived: [...this.state.donorDirectRequestsReceived, item],
     showSubmissionPage: true,
   })
-}
-
-deleteItem=(item)=> {
-  this.deleteListing(item);
-  this.returnToListingsIndex();
 }
 
 initiateNewRequestToDonate=(item)=>{
@@ -543,6 +573,8 @@ logIn=(token)=>{
       currentlyExpandedListing={this.state.currentlyExpandedListing}
       returnToListingsIndex={this.returnToListingsIndex}
       profileListingExpanded={this.state.profileListingExpanded}
+      acceptRequest={this.acceptRequest} 
+      declineRequest={this.declineRequest} 
       deleteItem={this.deleteItem} 
       userType={this.state.userType}
       requestorDirectDonationRequestsReceived={this.state.requestorDirectDonationRequestsReceived}

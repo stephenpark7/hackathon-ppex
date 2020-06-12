@@ -14,8 +14,8 @@ profileListingIsExpanded=()=>{
 
 ifDirectDonationOrRequestExpanded=()=>{
     return <div>
-        <button className="button">Accept</button> 
-        <button className="button">Decline</button> 
+        <button className="button" onClick={()=>this.props.acceptRequest(this.props.currentlyExpandedListing)}>Accept</button> 
+        <button className="button" onClick={()=>this.props.declineRequest(this.props.currentlyExpandedListing)}>Decline</button> 
     </div>
 }
 

@@ -85,6 +85,8 @@ displayAcceptedDonationRequests=()=>{
             <ListingShowPage currentlyExpandedListing={this.props.currentlyExpandedListing}
             returnToListingsIndex={this.props.returnToListingsIndex}
             donationListingShowPageExpanded={this.props.donationListingShowPageExpanded}
+            acceptRequest={this.props.acceptRequest} 
+            declineRequest={this.props.declineRequest} 
             deleteItem={this.props.deleteItem} 
             profileListingExpanded={this.props.profileListingExpanded}
             typeOfListingExpanded={this.props.typeOfListingExpanded}/>
