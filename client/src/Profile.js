@@ -9,7 +9,7 @@ displayDonorListings=()=>{
 
    return this.props.donorListings.map(listing=>{
     return <div>
-    <p onClick= {()=>this.props.goToDonationListingShowPageFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.item}/></p>
+    <p onClick= {()=>this.props.goToDonationListingShowPageFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>
     </div>     
     })
 }
@@ -17,7 +17,7 @@ displayDonorListings=()=>{
 displayDirectRequestsReceived=()=>{
     return this.props.donorDirectRequestsReceived.map(listing=>{
         return <div>
-        <p onClick= {()=>this.props.goToDirectRequestFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.item}/></p>
+        <p onClick= {()=>this.props.goToDirectRequestFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>
         </div>     
         })
 }
@@ -25,7 +25,7 @@ displayDirectRequestsReceived=()=>{
 displayDirectRequestsApproved=()=>{
     return this.props.donorApprovedRequests.map(listing=>{
         return <div>
-        <p onClick= {()=>this.props.goToApprovedRequestsFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.item}/></p>
+        <p onClick= {()=>this.props.goToApprovedRequestsFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>
         </div>     
         })
 }
@@ -33,7 +33,7 @@ displayDirectRequestsApproved=()=>{
 displayRequestListings=()=>{
     return this.props.requestorListings.map(listing=>{
         return <div>
-        <p onClick= {()=>this.props.goToRequestListingShowPageFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.item}/></p>
+        <p onClick= {()=>this.props.goToRequestListingShowPageFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>
         </div>     
         })
 }
@@ -42,7 +42,7 @@ displayRequestListings=()=>{
 displayDirectDonationRequests=()=>{
     return this.props.requestorDirectDonationRequestsReceived.map(listing=>{
         return <div>
-        <p onClick= {()=>this.props.goToDirectDonationFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.item}/></p>
+        <p onClick= {()=>this.props.goToDirectDonationFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>
         </div>     
         })
 }
@@ -50,7 +50,7 @@ displayDirectDonationRequests=()=>{
 displayAcceptedDonationRequests=()=>{
     return this.props.requestorAcceptedDonations.map(listing=>{
         return <div>
-        <p onClick= {()=>this.props.goToAcceptedDonationsFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.item}/></p>
+        <p onClick= {()=>this.props.goToAcceptedDonationsFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>
         </div>     
         }) 
 }

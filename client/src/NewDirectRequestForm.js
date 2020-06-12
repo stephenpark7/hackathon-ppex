@@ -5,33 +5,67 @@ import React from 'react';
 export default class NewDirectRequestForm extends React.Component{
 
     state={
-        item: "",
-        location: "",
+        name: "",
         quantity: "",
+        unit: "",
         description: "",
-        image: "./Images/mask.jpg",
-        type: ""
+        image: "",
+        type: "",
+        address: "",
+        city: "",
+        state: "",
+        postal: "",
     }
 
     formSubmit=(event)=>{
         event.preventDefault();
         this.props.submitNewDirectRequestForItem({
-            item: this.state.item,
-            location: this.state.location,
-            quantity: this.state.quantity,
-            description: this.state.description,
-            image: this.state.image,
-            type: this.state.type
+
+        name: this.state.name,
+        quantity: this.state.quantity,
+        unit: this.state.unit,
+        description: this.state.description,
+        image: this.chooseAnImage(),
+        type: this.state.type,
+        address: this.state.address,
+        city: this.state.city,
+        state: this.state.state,
+        postal: this.state.postal,
         })
     
         this.setState({
-            item: "",
-            location: "",
-            quantity: "",
-            description: "",
-            image: "./Images/mask.jpg",
-            type: ""
+        name: "",
+        quantity: "",
+        unit: "",
+        description: "",
+        image: "",
+        type: "",
+        address: "",
+        city: "",
+        state: "",
+        postal: "",
         })
+    }
+
+    chooseAnImage=()=>{
+
+        if(this.state.name==="Mask"){
+            return "./Images/mask.jpg"
+        }
+    
+        else if(this.state.name==="Acetaminophen"){
+            return "./Images/acetaminophen.jpg" 
+        }
+        else if(this.state.name==="Latex gloves"){
+             return "./Images/latex_gloves.jpg"
+        }
+        else if(this.state.name==="Alcohol pads"){
+           return "./Images/alochol_pads.jpg"
+        }
+    
+        else if(this.state.name==="Bandaids"){
+            return "./Images/bandaid_box.jpg"
+        }
     }
     
     formOnChange=(event)=>{
@@ -48,7 +82,7 @@ export default class NewDirectRequestForm extends React.Component{
                     <h2>Submit a Direct Request for An Item</h2>
                     <div className="container-for-new-listing-form">
                     <form onSubmit={this.formSubmit} className="form-for-new-listings">
-                    <input className="input-field-for-new-listing-form" type="text" name="item" value={this.state.item} placeholder="item to be listed" onChange={this.formOnChange}/>
+                    <input className="input-field-for-new-listing-form" type="text" name="item" value={this.state.name} placeholder="item to be listed" onChange={this.formOnChange}/>
                     <br></br>
                     <input className="input-field-for-new-listing-form" type="text" name="location" value={this.state.location} placeholder="your location" onChange={this.formOnChange}/>
                     <br></br>

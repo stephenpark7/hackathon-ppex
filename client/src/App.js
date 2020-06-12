@@ -13,27 +13,27 @@ state={
 
   userType:"requester",
 
-  donationListings: [{item: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2 boxes", location: "New York", image: "./Images/latex_gloves.jpg"}, 
-  {item: "Acetaminophen", description: "brings the fever down", quantity: "1 bottle", location: "Chicago", image: "./Images/acetaminophen.jpg"},
-  {item: "Mask", description: "cover your face!", quantity: "4 boxes", location: "San Francisco", image: "./Images/mask.jpg"},
-  {item: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5 boxes", location: "Arizona", image: "./Images/bandaid_box.jpg"},
-  {item: "Alcohol pads", description: "clean open wounds or anything the Coronavirus might have touched", quantity: "4 boxes", location: "Michigan", image: "./Images/alcohol_pads.jpg"}
-],
-  requestListings: [{item: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5 boxes", location: "Arizona", image: "./Images/bandaid_box.jpg"}, 
-  {item: "Alcohol pads", description: "clean open wounds or anything the Coronavirus might have touched", quantity: "4 boxes", location: "Michigan", image: "./Images/alcohol_pads.jpg"}],
- 
-  requestorDirectDonationRequestsReceived: [{item: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5 boxes", location: "Arizona", image: "./Images/bandaid_box.jpg"}], 
-  
-  requestorListings: [{item: "Mask", description: "cover your face!", quantity: "4 boxes", location: "San Francisco", image: "./Images/mask.jpg"}], 
-  
-  requestorAcceptedDonations: [{item: "Mask", description: "cover your face!", quantity: "4 boxes", location: "San Francisco", image: "./Images/mask.jpg"}],
+  donationListings: [{name: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2", unit: "box(es)", address: "1311 Maple St.", city: "New York", state: "New York", postal: "11104", image: "./Images/latex_gloves.jpg"}, 
+  {name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"},
+  {name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"},
+  {name: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5", unit: "box(es)", address: "5674 Desert Flower Dr.", city: "Tuscon", state: "Arizona", postal: "90236", image: "./Images/bandaid_box.jpg"},
+  {name: "Alcohol pads", description: "clean open wounds or anything the Coronavirus might have touched", quantity: "4", unit: "container(s)", address: "4890 W. Lake St.", city: "Detroit", state: "Michigan", postal: "78654", image: "./Images/alcohol_pads.jpg"}],
 
-  donorApprovedRequests: [{item: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2 boxes", location: "New York", image: "./Images/latex_gloves.jpg"}],
+  requestListings: [{name: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5", unit: "box(es)", address: "5674 Desert Flower Dr.", city: "Tuscon", state: "Arizona", postal: "90236", image: "./Images/bandaid_box.jpg"}, 
+  {name: "Alcohol pads", description: "clean open wounds or anything the Coronavirus might have touched", quantity: "4", unit: "container(s)", address: "4890 W. Lake St.", city: "Detroit", state: "Michigan", postal: "78654", image: "./Images/alcohol_pads.jpg"}],
+ 
+  requestorDirectDonationRequestsReceived: [{name: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5", unit: "box(es)", address: "5674 Desert Flower Dr.", city: "Tuscon", state: "Arizona", postal: "90236", image: "./Images/bandaid_box.jpg"}], 
   
-  donorDirectRequestsReceived: [{item: "Acetaminophen", description: "brings the fever down", quantity: "1 bottle", location: "Chicago", image: "./Images/acetaminophen.jpg"},
-  {item: "Mask", description: "cover your face!", quantity: "4 boxes", location: "San Francisco", image: "./Images/mask.jpg"}], 
+  requestorListings: [{name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"}], 
   
-  donorListings: [{item: "Acetaminophen", description: "brings the fever down", quantity: "1 bottle", location: "Chicago", image: "./Images/acetaminophen.jpg"}],
+  requestorAcceptedDonations: [{name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"}],
+
+  donorApprovedRequests: [{name: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2", unit: "box(es)", address: "1311 Maple St.", city: "New York", state: "New York", postal: "11104", image: "./Images/latex_gloves.jpg"}],
+  
+  donorDirectRequestsReceived: [{name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"},
+  {item: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"}], 
+  
+  donorListings: [{name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"}],
 
   donationListingShowPageExpanded: false,
   requestListingShowPageExpanded: false,
@@ -96,7 +96,10 @@ returnToListingsIndex=()=>{
 
 createANewListing=(listing)=>{
 
-  if(listing.type==="Donation"){
+  console.log("clicked")
+  console.log(listing.image)
+
+  if(listing.type==="donation"){
     this.setState({
       aShowPageIsExpanded: false,
       donationListings: [...this.state.donationListings, listing],
@@ -105,10 +108,10 @@ createANewListing=(listing)=>{
   })
 
   }
-  else if(listing.type==="Request"){
+  else if(listing.type==="request"){
     this.setState({
       aShowPageIsExpanded: false,
-      requestListings: [...this.state.donationListings, listing],
+      requestListings: [...this.state.requestListings, listing],
       showSubmissionPage: true,
       createdANewListing: true
     })
@@ -196,7 +199,6 @@ goToAcceptedDonationsFromProfile=(donation)=>{
 }
 
 initiateNewRequestForItem=(item)=>{
-  console.log("clicked")
 this.setState({
   aShowPageIsExpanded: false,
   newDirectRequestForItem: true,
@@ -206,7 +208,6 @@ this.setState({
 }
 
 initiateNewRequestToDonate=(item)=>{
-  console.log("clicked")
   this.setState({
     aShowPageIsExpanded: false,
     newDirectRequestToDonateItem: true,
@@ -236,8 +237,7 @@ initiateNewRequestToDonate=(item)=>{
 
 
   render(){
-
-    console.log(this.state.donationListings)
+    console.log(this.state.requestListings)
 
   return (
     <div>

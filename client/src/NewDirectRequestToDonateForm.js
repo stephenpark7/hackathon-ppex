@@ -1,6 +1,6 @@
 import React from 'react';
 
-//Not currently using this form for anything, but I will save it just in case
+//Not currently using this form for anything, but I will save it just in case. Also needs to be revised
 
 
 export default class NewDirectRequestToDonateForm extends React.Component{

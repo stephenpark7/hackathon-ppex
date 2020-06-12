@@ -25,6 +25,7 @@ export default class SubmissionSuccess extends React.Component{
     }
 
 render(){
+    console.log(this.props.createdANewListing)
 return(
         <span className="submitted-new-listing-container">
         <i role="img" className="submitted-new-listing-icon">&#10004;</i>

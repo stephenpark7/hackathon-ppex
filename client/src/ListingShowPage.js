@@ -80,17 +80,21 @@ render(){
         }
 
         <div className="div-for-showpage-info">
-            <p className="showpage-item-name">{this.props.currentlyExpandedListing.item}</p>
-            <p className="showpage-item-quantity">Quantity: {this.props.currentlyExpandedListing.quantity}</p>
+            <p className="showpage-item-name">{this.props.currentlyExpandedListing.name}</p>
+            <p className="showpage-item-quantity">Quantity: {this.props.currentlyExpandedListing.quantity} {this.props.currentlyExpandedListing.unit}</p>
         </div>
 
         <p className="showpage-item-description">{this.props.currentlyExpandedListing.description}</p>
 
-        <img className='listing-showpage-image' src= {require(`${this.props.currentlyExpandedListing.image}`)} alt= {this.props.currentlyExpandedListing.item}/>
+        <img className='listing-showpage-image' src= {require(`${this.props.currentlyExpandedListing.image}`)} alt= {this.props.currentlyExpandedListing.name}/>
 
         <div className="listing-showpage-location-container">
         <h3>Location</h3>
-        <p className="listing-showpage-location">{this.props.currentlyExpandedListing.location}</p>
+        <p className="listing-showpage-location">{this.props.currentlyExpandedListing.address}</p>
+        <p className="listing-showpage-location">{this.props.currentlyExpandedListing.city}</p>
+        <p className="listing-showpage-location">{this.props.currentlyExpandedListing.state}</p>
+        <p className="listing-showpage-location">{this.props.currentlyExpandedListing.postal}</p>
+
         </div>
 
         {this.whichButtonsToRender()}
