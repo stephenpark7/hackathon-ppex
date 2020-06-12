@@ -43,7 +43,7 @@ loginFormSubmitted=(event)=>{
         }
     })
     .catch(err => {
-        console.log(err);
+        console.log(err.response.data);
     });
 }
 
@@ -67,7 +67,7 @@ submitSignupForm=(event)=>{
         console.log(res.data);
     })
     .catch(err => {
-        console.log(err);
+        console.log(err.response.data);
     });
 }
 
