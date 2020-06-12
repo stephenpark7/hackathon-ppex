@@ -20,6 +20,13 @@ formFilledOut=(event)=>{
     })
 }
 
+getJWT() {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) return { token: JSON.parse(jwt).accessToken, id: JSON.parse(jwt).id };
+    else return null;
+  }
+  
+
 loginFormSubmitted=(event)=>{
     event.preventDefault();
 
@@ -37,7 +44,7 @@ loginFormSubmitted=(event)=>{
         }
     })
     .catch(err => {
-        console.log(err.response.data);
+        console.log(err);
     });
 
     this.setState({

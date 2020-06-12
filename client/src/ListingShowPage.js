@@ -6,7 +6,10 @@ export default class DonationListingShowPage extends React.Component{
 
 
 profileListingIsExpanded=()=>{
-        return <button className="button">Delete This Listing</button> 
+    return <button className="button" 
+    onClick={()=> { 
+        this.props.deleteItem(this.props.currentlyExpandedListing) 
+    } }>Delete This Listing</button> 
 }
 
 ifDirectDonationOrRequestExpanded=()=>{

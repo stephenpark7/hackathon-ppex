@@ -6,7 +6,7 @@ export default class Profile extends React.Component{
    // Right now, this is displaying the profile for donors and receivers, but this can be conditionally rendered depending on what type of account the user has.  
 
 displayDonorListings=()=>{
-   return this.props.donorListings.map(listing=>{
+   return this.props.donorListings && this.props.donorListings.map(listing=>{
     return <div>
     <p onClick= {()=>this.props.goToDonationListingShowPageFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>
     </div>     
@@ -14,7 +14,7 @@ displayDonorListings=()=>{
 }
         
 displayDirectRequestsReceived=()=>{
-    return this.props.donorDirectRequestsReceived.map(listing=>{
+    return this.props.donorDirectRequestsReceived && this.props.donorDirectRequestsReceived.map(listing=>{
         return <div>
         <p onClick= {()=>this.props.goToDirectRequestFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>
         </div>     
@@ -22,7 +22,7 @@ displayDirectRequestsReceived=()=>{
 }
 
 displayDirectRequestsApproved=()=>{
-    return this.props.donorApprovedRequests.map(listing=>{
+    return this.props.donorApprovedRequests && this.props.donorApprovedRequests.map(listing=>{
         return <div>
         <p onClick= {()=>this.props.goToApprovedRequestsFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>
         </div>     
@@ -85,6 +85,7 @@ displayAcceptedDonationRequests=()=>{
             <ListingShowPage currentlyExpandedListing={this.props.currentlyExpandedListing}
             returnToListingsIndex={this.props.returnToListingsIndex}
             donationListingShowPageExpanded={this.props.donationListingShowPageExpanded}
+            deleteItem={this.props.deleteItem} 
             profileListingExpanded={this.props.profileListingExpanded}
             typeOfListingExpanded={this.props.typeOfListingExpanded}/>
         )

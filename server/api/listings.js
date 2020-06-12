@@ -103,7 +103,6 @@ router.post("/listings/new", authentication, async (req, res) => {
 
 // DONATE TO A REQUEST / SEND REQUEST TO A DONATION
 router.put("/listing/:id", authentication, async (req, res) => {
-
   const listingId = req.params.id;
   const { quantity, unit, description, image } = req.body;
 

@@ -18,27 +18,43 @@ state={
 
   listings: [],
 
-  donationListings: [{name: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2", unit: "box(es)", address: "1311 Maple St.", city: "New York", state: "New York", postal: "11104", image: "./Images/latex_gloves.jpg"}, 
-  {name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"},
-  {name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"},
-  {name: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5", unit: "box(es)", address: "5674 Desert Flower Dr.", city: "Tuscon", state: "Arizona", postal: "90236", image: "./Images/bandaid_box.jpg"},
-  {name: "Alcohol pads", description: "clean open wounds or anything the Coronavirus might have touched", quantity: "4", unit: "container(s)", address: "4890 W. Lake St.", city: "Detroit", state: "Michigan", postal: "78654", image: "./Images/alcohol_pads.jpg"}],
+  donationListings: [],
 
-  requestListings: [{name: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5", unit: "box(es)", address: "5674 Desert Flower Dr.", city: "Tuscon", state: "Arizona", postal: "90236", image: "./Images/bandaid_box.jpg"}, 
-  {name: "Alcohol pads", description: "clean open wounds or anything the Coronavirus might have touched", quantity: "4", unit: "container(s)", address: "4890 W. Lake St.", city: "Detroit", state: "Michigan", postal: "78654", image: "./Images/alcohol_pads.jpg"}],
+  // donationListings: [{name: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2", unit: "box(es)", address: "1311 Maple St.", city: "New York", state: "New York", postal: "11104", image: "./Images/latex_gloves.jpg"}, 
+  // {name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"},
+  // {name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"},
+  // {name: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5", unit: "box(es)", address: "5674 Desert Flower Dr.", city: "Tuscon", state: "Arizona", postal: "90236", image: "./Images/bandaid_box.jpg"},
+  // {name: "Alcohol pads", description: "clean open wounds or anything the Coronavirus might have touched", quantity: "4", unit: "container(s)", address: "4890 W. Lake St.", city: "Detroit", state: "Michigan", postal: "78654", image: "./Images/alcohol_pads.jpg"}],
+
+  requestListings: [],
+
+  //requestListings: [{name: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5", unit: "box(es)", address: "5674 Desert Flower Dr.", city: "Tuscon", state: "Arizona", postal: "90236", image: "./Images/bandaid_box.jpg"}, 
+  //{name: "Alcohol pads", description: "clean open wounds or anything the Coronavirus might have touched", quantity: "4", unit: "container(s)", address: "4890 W. Lake St.", city: "Detroit", state: "Michigan", postal: "78654", image: "./Images/alcohol_pads.jpg"}],
  
-  requestorDirectDonationRequestsReceived: [{name: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5", unit: "box(es)", address: "5674 Desert Flower Dr.", city: "Tuscon", state: "Arizona", postal: "90236", image: "./Images/bandaid_box.jpg"}], 
+  //requestorDirectDonationRequestsReceived: [{name: "Band-aids", description: "keep the germs out of any cuts you have", quantity: "5", unit: "box(es)", address: "5674 Desert Flower Dr.", city: "Tuscon", state: "Arizona", postal: "90236", image: "./Images/bandaid_box.jpg"}], 
   
-  requestorListings: [{name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"}], 
-  
-  requestorAcceptedDonations: [{name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"}],
+  requestorDirectDonationRequestsReceived: [],
 
-  donorApprovedRequests: [{name: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2", unit: "box(es)", address: "1311 Maple St.", city: "New York", state: "New York", postal: "11104", image: "./Images/latex_gloves.jpg"}],
+  requestorListings: [],
+
+  //requestorListings: [{name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"}], 
   
-  donorDirectRequestsReceived: [{name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"},
-  {item: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"}], 
+  requestorAcceptedDonations: [],
+
+  //requestorAcceptedDonations: [{name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"}],
+
+  //donorApprovedRequests: [{name: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2", unit: "box(es)", address: "1311 Maple St.", city: "New York", state: "New York", postal: "11104", image: "./Images/latex_gloves.jpg"}],
   
-  donorListings: [{name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"}],
+  donorApprovedRequests: [],
+
+  donorDirectRequestsReceived: [],
+
+  //donorDirectRequestsReceived: [{name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"},
+  //{item: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"}], 
+  
+  //donorListings: [{name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"}],
+
+  donorListing: [],
 
   donationListingShowPageExpanded: false,
   requestListingShowPageExpanded: false,
@@ -52,71 +68,87 @@ state={
   showSubmissionPage: false
 }
 
-componentDidMount=()=>{
+getJWT() {
+  const jwt = localStorage.getItem("jwt");
+  if (jwt) return { token: JSON.parse(jwt).accessToken, id: JSON.parse(jwt).id };
+  else return null;
+}
 
-  const token = JSON.parse(localStorage.getItem("jwt")).accessToken;
-  const id = JSON.parse(localStorage.getItem("jwt")).id;
-  let isDonor;
+fetchData() {
+  const jwt = this.getJWT();
 
-  // get user data
-  axios({
-    method: 'get',
-    url: "/profile",
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-      'x-access-token': token
-    }
-  })
-  .then(res => {
-    //console.log(res.data);
-    isDonor = res.data.type === "donor";
-    this.setState({userType: res.data.type});
-  })
-  .catch(err => {
-    console.log(err.response.data);
-  });
+  if (jwt) {
+    const token = jwt.token;
+    const id = jwt.id;
+    let isDonor;
+  
+    // get user data
+    axios({
+      method: 'get',
+      url: "/profile",
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    })
+    .then(res => {
+      isDonor = res.data.type === "donor";
+      this.setState({userType: res.data.type});
+    })
+    .catch(err => {
+      console.log(err.response.data);
+    });
+  
+    // get listings
+    axios({
+      method: 'get',
+      url: "/listings?target=all",
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    })
+    .then(res => {
+      const listings = res.data;
+      this.setState({donationListings: listings.filter(listing => listing.type === "donation")});
+      this.setState({requestListings: listings.filter(listing => listing.type === "request")});
+      if (isDonor) {
+        this.setState({donorListings: listings.filter(listing => listing.owner === id)});
+  
+        let pending = [];
+        let accepted = [];
 
-  // get listings
-  axios({
-    method: 'get',
-    url: "/listings?target=all",
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-      'x-access-token': token
-    }
-  })
-  .then(res => {
-    const listings = res.data;
-    this.setState({donationListings: listings.filter(listing => listing.type === "donation")});
-    this.setState({requestListings: listings.filter(listing => listing.type === "request")});
-    if (isDonor) {
-      this.setState({donorListings: listings.filter(listing => listing.owner === id)});
-
-      const pending = [];
-      const accepted = [];
-
-      for (let i = 0; i < listings.length; i++) {
-        for (let j = 0; j < listings[i].responses.length; j++) {
-          if (listings[i].responses[j].status === "pending") {
-            pending.push(listings[i].responses[j]);
-          }
-          else if (listings[i].responses[j].status === "accepted") {
-            accepted.push(listings[i].responses[j]);
+        for (let i = 0; i < listings.length; i++) {
+          if (listings[i].responses && listings[i].owner === id)
+          for (let j = 0; j < listings[i].responses.length; j++) {
+            if (listings[i].responses[j].status === "pending") {
+              pending.push(listings[i].responses[j]);
+            }
+            else if (listings[i].responses[j].status === "accepted") {
+              accepted.push(listings[i].responses[j]);
+            }
           }
         }
+
+        this.setState({donorDirectRequestsReceived: pending});
+        this.setState({donorApprovedRequests: accepted});
+      } else {
+
+
+
       }
+  
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+}
 
-      this.setState({donorDirectRequestsReceived: pending});
-      this.setState({donorApprovedRequests: accepted});
-    }
-
-  })
-  .catch(err => {
-    console.log(err.response.data);
-  });
-
+componentDidMount=()=>{
+  this.fetchData();
 }
 
 goToDonationListingShowPage=(donation)=>{
@@ -158,21 +190,100 @@ returnToListingsIndex=()=>{
   })
 }
 
+submitNewListing(listing) {
+  const { token } = this.getJWT();
+
+  axios({
+    method: 'post',
+    url: "/listings/new",
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    },
+    data: {
+      name: listing.name,
+      quantity: listing.quantity,
+      unit: listing.unit,
+      description: listing.description,
+      image: listing.image,
+      type: listing.type
+    }
+  })
+  .then(res => {
+    console.log(res.data);
+    this.fetchData();
+  })
+  .catch(err => {
+    console.log(err.response.data);
+  });
+}
+
+requestListing(listing) {
+  const { token } = this.getJWT();
+  axios({
+    method: 'put',
+    url: "/listing/" + listing._id,
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    },
+    data: {
+      name: listing.name,
+      quantity: listing.quantity,
+      unit: listing.unit,
+      description: listing.description,
+      image: listing.image
+    }
+  })
+  .then(res => {
+    console.log(res.data);
+    this.fetchData();
+  })
+  .catch(err => {
+    console.log(err.response.data);
+  });
+}
+
+deleteListing(listing) {
+  const { token } = this.getJWT();
+  axios({
+    method: 'delete',
+    url: "/listing/" + listing._id,
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    }
+  })
+  .then(res => {
+    console.log(res.data);
+    this.fetchData();
+  })
+  .catch(err => {
+    console.log(err.response.data);
+  });
+}
+
 createANewListing=(listing)=>{
 
   console.log("clicked")
   console.log(listing.image)
 
   if(listing.type==="donation"){
-    this.setState({
-      aShowPageIsExpanded: false,
-      donationListings: [...this.state.donationListings, listing],
-      showSubmissionPage: true,
-      createdANewListing: true
-  })
+    this.submitNewListing(listing);
 
+    this.setState({
+        aShowPageIsExpanded: false,
+        donationListings: [...this.state.donationListings, listing],
+        showSubmissionPage: true,
+        createdANewListing: true
+    })
   }
   else if(listing.type==="request"){
+    this.submitNewListing(listing);
+    
     this.setState({
       aShowPageIsExpanded: false,
       requestListings: [...this.state.requestListings, listing],
@@ -263,15 +374,26 @@ goToAcceptedDonationsFromProfile=(donation)=>{
 }
 
 initiateNewRequestForItem=(item)=>{
-this.setState({
-  aShowPageIsExpanded: false,
-  newDirectRequestForItem: true,
-  donorDirectRequestsReceived: [...this.state.donorDirectRequestsReceived, item],
-  showSubmissionPage: true,
-})
+
+  this.requestListing(item);
+
+  this.setState({
+    aShowPageIsExpanded: false,
+    newDirectRequestForItem: true,
+    donorDirectRequestsReceived: [...this.state.donorDirectRequestsReceived, item],
+    showSubmissionPage: true,
+  })
+}
+
+deleteItem=(item)=> {
+  this.deleteListing(item);
+  this.returnToListingsIndex();
 }
 
 initiateNewRequestToDonate=(item)=>{
+
+  this.requestListing(item);
+
   this.setState({
     aShowPageIsExpanded: false,
     newDirectRequestToDonateItem: true,
@@ -312,7 +434,7 @@ initiateNewRequestToDonate=(item)=>{
 
       <Route exact path= '/' render={(renderProps)=> <Home {...renderProps}/>}/>
 
-      <Route exact path= '/login' render={(renderProps)=> <Login {...renderProps}/>}></Route>
+      <Route exact path= '/login' render={(renderProps)=> <Login {...renderProps} fetchData={this.fetchData} />}></Route>
 
       <Route exact path= '/listings' render={(renderProps)=> <Listings {...renderProps} donationListings= {this.state.donationListings} 
       requestListings= {this.state.requestListings}
@@ -326,7 +448,7 @@ initiateNewRequestToDonate=(item)=>{
       createANewListing={this.createANewListing}
       profileListingExpanded={this.state.profileListingExpanded}
       createdANewListing={this.state.createdANewListing}
-      userType={this.state.userType}
+      userType={this.state.userType} 
       initiateNewRequestForItem={this.initiateNewRequestForItem}
       initiateNewRequestToDonate={this.initiateNewRequestToDonate}
       createNewDirectRequestForItem={this.createNewDirectRequestForItem}
@@ -349,6 +471,7 @@ initiateNewRequestToDonate=(item)=>{
       currentlyExpandedListing={this.state.currentlyExpandedListing}
       returnToListingsIndex={this.returnToListingsIndex}
       profileListingExpanded={this.state.profileListingExpanded}
+      deleteItem={this.deleteItem} 
       userType={this.state.userType}
       requestorDirectDonationRequestsReceived={this.state.requestorDirectDonationRequestsReceived}
       requestorListings={this.state.requestorListings}
