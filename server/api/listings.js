@@ -82,9 +82,8 @@ router.post("/listings/new", authentication, async (req, res) => {
   // get location
   const { GEOLOCATION_URL, GEOLOCATION_APIKEY } = geolocation;
   const response = await axios.get(GEOLOCATION_URL + req.clientIp + GEOLOCATION_APIKEY)
-  const data = { latitude: response.data.latitude, longitude: response.data.longitude };
-
-  let listingData = { name, quantity, unit, description, image, longitude: data.longitude, latitude: data.latitude, type }; // address, city, state, postal,
+  const data = { state: response.data.region_name, city: response.data.city,  latitude: response.data.latitude, longitude: response.data.longitude };
+  let listingData = { name, quantity, unit, description, image, state: data.state, city: data.city, longitude: data.longitude, latitude: data.latitude, type }; // address, city, state, postal,
   listingData.owner = req.userId;
   listingData.date = moment.utc();
 
