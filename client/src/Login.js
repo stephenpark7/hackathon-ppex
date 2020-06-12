@@ -29,6 +29,22 @@ loginFormSubmitted=(event)=>{
         errors: [],
         successMessage: ""
     })
+    axios.post("/login", {
+        email: "atkins@gmail.com",
+        password: "password"
+    })
+    .then(res => {
+        if (res.status === 200) {
+            localStorage.setItem("jwt", JSON.stringify(res.data));
+            this.props.history.push("/");
+        } else {
+            const error = new Error(res.error);
+            throw error;
+        }
+    })
+    .catch(err => {
+        console.log(err.response.data);
+    });
 }
 
 submitSignupForm=(event)=>{
@@ -49,6 +65,9 @@ submitSignupForm=(event)=>{
     })
     .then(res => {
         console.log(res.data);
+    })
+    .catch(err => {
+        console.log(err.response.data);
     });
 }
 
