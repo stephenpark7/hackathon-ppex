@@ -109,7 +109,7 @@ fetchData() {
       }
     })
     .then(res => {
-      const listings = res.data;
+      let listings = res.data;
       this.setState({donationListings: listings.filter(listing => listing.type === "donation")});
       this.setState({requestListings: listings.filter(listing => listing.type === "request")});
       if (isDonor) {
@@ -121,6 +121,7 @@ fetchData() {
           for (let j = 0; j < listings[i].responses.length; j++) {
             if (listings[i].responses[j].status === "pending") {
               listings[i].responses[j].responseId = j;
+              listings[i].responses[j]._id = listings[i]._id;
               pending.push(listings[i].responses[j]);
             }
             else if (listings[i].responses[j].status === "accepted") {
@@ -128,6 +129,7 @@ fetchData() {
             }
           }
         }
+        console.log(pending);
         this.setState({donorDirectRequestsReceived: pending});
         this.setState({donorApprovedRequests: accepted});
       } else {
@@ -268,7 +270,7 @@ deleteItem=(item)=> {
 }
 
 acceptRequest=(listing)=> {
-
+  console.log(listing);
   const { token } = this.getJWT();
   axios({
     method: 'put',
@@ -288,7 +290,7 @@ acceptRequest=(listing)=> {
   })
   .catch(err => {
     // console.log(err.response.data);
-    console.log(err)
+    console.log(err.response.data)
   });
 
   this.setState({
