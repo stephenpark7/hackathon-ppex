@@ -16,6 +16,8 @@ state={
 
   //combine donationListings and RequestListings, call it generaListings in state, keep in mind that type is an attribute
 
+  listings: [],
+
   donationListings: [{name: "Latex Gloves", description: "protects your hands from the coronavirus", quantity: "2", unit: "box(es)", address: "1311 Maple St.", city: "New York", state: "New York", postal: "11104", image: "./Images/latex_gloves.jpg"}, 
   {name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"},
   {name: "Mask", description: "cover your face!", quantity: "4", unit: "box(es)", address: "1415 Birdie Dr.", city: "San Francisco", state: "California", postal: "90007", image: "./Images/mask.jpg"},
@@ -52,20 +54,68 @@ state={
 
 componentDidMount=()=>{
 
-  let token= localStorage.getItem("jwt");
+  const token = JSON.parse(localStorage.getItem("jwt")).accessToken;
+  const id = JSON.parse(localStorage.getItem("jwt")).id;
+  let isDonor;
 
+  // get user data
   axios({
     method: 'get',
-    url: "listings?target=all",
+    url: "/profile",
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
       'x-access-token': token
     }
   })
-.then(res=>{
-  console.log(res)
-})
+  .then(res => {
+    //console.log(res.data);
+    isDonor = res.data.type === "donor";
+    this.setState({userType: res.data.type});
+  })
+  .catch(err => {
+    console.log(err.response.data);
+  });
+
+  // get listings
+  axios({
+    method: 'get',
+    url: "/listings?target=all",
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    }
+  })
+  .then(res => {
+    const listings = res.data;
+    this.setState({donationListings: listings.filter(listing => listing.type === "donation")});
+    this.setState({requestListings: listings.filter(listing => listing.type === "request")});
+    if (isDonor) {
+      this.setState({donorListings: listings.filter(listing => listing.owner === id)});
+
+      const pending = [];
+      const accepted = [];
+
+      for (let i = 0; i < listings.length; i++) {
+        for (let j = 0; j < listings[i].responses.length; j++) {
+          if (listings[i].responses[j].status === "pending") {
+            pending.push(listings[i].responses[j]);
+          }
+          else if (listings[i].responses[j].status === "accepted") {
+            accepted.push(listings[i].responses[j]);
+          }
+        }
+      }
+
+      this.setState({donorDirectRequestsReceived: pending});
+      this.setState({donorApprovedRequests: accepted});
+    }
+
+  })
+  .catch(err => {
+    console.log(err.response.data);
+  });
 
 }
 

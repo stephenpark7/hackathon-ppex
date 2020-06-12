@@ -6,7 +6,6 @@ export default class Profile extends React.Component{
    // Right now, this is displaying the profile for donors and receivers, but this can be conditionally rendered depending on what type of account the user has.  
 
 displayDonorListings=()=>{
-
    return this.props.donorListings.map(listing=>{
     return <div>
     <p onClick= {()=>this.props.goToDonationListingShowPageFromProfile(listing)} className="background-for-general-listings"><img className='general-listing' src= {require(`${listing.image}`)} alt= {listing.name}/></p>

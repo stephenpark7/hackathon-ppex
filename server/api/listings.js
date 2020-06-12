@@ -119,6 +119,11 @@ router.put("/listing/:id", authentication, async (req, res) => {
       { _id: new req.objectID(listingId) }
     );
 
+  if (!data) {
+    res.status(400).json({ message: "cannot be found" });
+    return;
+  }
+
   if (data.owner === req.userId) {
     res.status(400).json({ message: "cannot send a request to your own listing" });
     return;
@@ -159,6 +164,11 @@ router.put("/listing/accept/:id", authentication, async (req, res) => {
     .findOne( 
       { _id: new req.objectID(listingId) }
     );
+
+  if (!data) {
+    res.status(400).json({ message: "cannot be found" });
+    return;
+  }
 
   if (data.type !== "request" && data.type !== "donation") {
     res.status(400).json({ message: "invalid type" });
