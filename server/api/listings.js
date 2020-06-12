@@ -6,6 +6,7 @@ const authentication = require("../middlewares/authentication");
 
 router.use("/listings", authentication);
 
+// GET ALL LISTINGS
 router.get("/listings", async (req, res) => {
 
   const listings = await req.db
@@ -17,6 +18,7 @@ router.get("/listings", async (req, res) => {
 
 });
 
+// ADD A NEW LISTING
 router.post("/listings/new", async (req, res) => {
 
   let data = req.body;

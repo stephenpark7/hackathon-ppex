@@ -46,7 +46,7 @@ router.post("/login", async (req, res) => {
 
   const userData = await req.db
     .collection("users")
-    .findOne({ email });
+    .findOne( { email } );
 
   if (await bcrypt.compare(password, userData.password)) {
       const token = jwt.sign({ id: userData._id }, secret, {
