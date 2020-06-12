@@ -54,7 +54,7 @@ state={
   
   //donorListings: [{name: "Acetaminophen", description: "brings the fever down", quantity: "1", unit: "bottle(s)", address: "43-18 40th St.", city: "Chicago", state: "Illinois", postal: "11104", image: "./Images/acetaminophen.jpg"}],
 
-  donorListing: [],
+  donorListings: [],
 
   donationListingShowPageExpanded: false,
   requestListingShowPageExpanded: false,
@@ -139,6 +139,10 @@ fetchData() {
 }
 componentDidMount=()=>{
   this.fetchData();
+  this.setState({  
+    loggedIn: localStorage.getItem("loggedIn")
+  })
+
 }
 
 goToDonationListingShowPage=(donation)=>{
@@ -255,11 +259,6 @@ deleteListing(listing) {
     console.log(err.response.data);
   });
 
-//reset state here
-
-  // this.setState({
-
-  // })
 }
 
 deleteItem=(item)=> {
@@ -267,9 +266,7 @@ deleteItem=(item)=> {
   this.returnToListingsIndex();
 }
 
-acceptRequest(listing) {
-
-  console.log(listing);
+acceptRequest=(listing)=> {
 
   const { token } = this.getJWT();
   axios({
@@ -289,8 +286,13 @@ acceptRequest(listing) {
     this.fetchData();
   })
   .catch(err => {
-    console.log(err.response.data);
+    // console.log(err.response.data);
+    console.log(err)
   });
+
+  // this.setState({
+
+  // })
 }
 
 declineRequest(listing) {
@@ -368,7 +370,7 @@ goToDirectDonationFromProfile=(request)=>{
     requestListingShowPageExpanded: true,
     donationListingShowPageExpanded: false,
     aShowPageIsExpanded: true,
-    currentlyExpandedListing: request   ,
+    currentlyExpandedListing: request,
     profileListingExpanded: true,
     createdANewListing: false,
     showSubmissionPage: false,
@@ -443,9 +445,11 @@ logIn=(token)=>{
 
     const token = JSON.parse(localStorage.getItem("jwt")).accessToken;
     const id = JSON.parse(localStorage.getItem("jwt")).id;
+
+    localStorage.setItem("loggedIn", true);
   
     this.setState({
-          loggedIn: true
+          loggedIn: localStorage.getItem("loggedIn")
         })
   
   
@@ -524,6 +528,8 @@ logIn=(token)=>{
 }
 
   render(){
+
+    console.log(this.state.currentlyExpandedListing)
 
   return (
 

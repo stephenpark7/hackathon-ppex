@@ -21,9 +21,6 @@ state={
 
 formFilledOut=(event)=>{
 
-    console.log(event.target.name)
-    console.log(event.target.value)
-
     this.setState({
         [event.target.name]: event.target.value
     })
@@ -174,7 +171,7 @@ toggleSignIn=()=>{
             <h1 className="heading">Donation4U</h1>            
 
             <form onSubmit={this.loginFormSubmitted} className= "forms">
-                <p className="login-labels">Username</p>
+                <p className="login-labels">E-mail address</p>
                 <input id="username" className="login-and-signup-form-fields" type="text" name="loginUsername" value={this.state.loginUsername} onChange={this.formFilledOut}/>
                 <p className="login-labels">Password</p>
                 <input className="login-and-signup-form-fields" type="text" name="loginPassword" value={this.state.loginPassword} onChange={this.formFilledOut}/>
